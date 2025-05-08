@@ -3,8 +3,8 @@
   "title": "Agile Health",
   "children": [
     {
-      "categoryId": "artifacts",
-      "title": "Artifacts",
+      "categoryId": "agile-artifacts",
+      "title": "Agile Artifacts",
       "rules": [
         {
           "ruleId": "03f31a64-3c7a-4543-8085-e69373f991d7",

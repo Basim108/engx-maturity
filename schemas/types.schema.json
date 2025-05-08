@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "types.schema.json",
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+      "description": "Unique identifier in UUID v4 format"
+    },
+    "uniqueId": {
+      "type": "string",
+      "description": "Human readable unique identifier"
+    },
+    "resourceUrl": {
+      "type": "object",
+      "description": "A descriptive info about a link to a resource.",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "description": "Brief resource description, for example, an article header."
+        }
+      },
+      "required": ["url", "title"]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://engx-maturity.com/product.schema.json",
+  "title": "Rule",
+  "description": "A rule or practice that some maturity levels might contain.",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "properties": {
+      "ruleId": {
+        "type": "string",
+        "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+        "description": "Unique identifier for the rule in UUID v4 format"
+      },
+      "title": {
+        "type": "string",
+        "description": "Brief summary of the rule"
+      },
+      "description": {
+        "type": "string",
+        "description": "Detailed explanation of the rule and its context"
+      },
+      "articleUrl": {
+        "type": "string",
+        "description": "URL to an article with additional information about the rule"
+      }
+    },
+    "required": ["ruleId", "title"]
+  }
+}

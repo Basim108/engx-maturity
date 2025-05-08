@@ -10,5 +10,5 @@ jobs:
       - name: Validate JSON
         uses: docker://orrosenblatt/validate-json-action:latest
         env:
-          INPUT_SCHEMA: /spec/rule.schema.json
-          INPUT_JSONS: /rules/agile-health.rule.json
+          INPUT_SCHEMA: /meta/schema.json
+          INPUT_JSONS: /rules/agile-health.rules.json

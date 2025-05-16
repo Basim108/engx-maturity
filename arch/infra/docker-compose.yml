@@ -1,0 +1,16 @@
+version: '3'
+services:
+  structurizr:
+    image: structurizr/onpremises
+    volumes:
+      - engx_structurizr:/root/structurizr
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+
+volumes:
+  engx_structurizr:

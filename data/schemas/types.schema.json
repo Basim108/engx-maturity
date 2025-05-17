@@ -25,6 +25,22 @@
         }
       },
       "required": ["url", "title"]
+    },
+    "categoryUrl": {
+      "type": "object",
+      "description": "Link to a category that located in a separate json file.",
+      "additionalProperties": false,
+      "properties": {
+        "categoryId": {
+          "type": "string",
+          "description": "Id of a target category."
+        },
+        "rootCategoryId": {
+          "type": "string",
+          "description": "CategoryId that identifies a json file where a target category can be found. If this not set then target category is the root category."
+        }
+      },
+      "required": ["categoryId"]
     }
   }
 }

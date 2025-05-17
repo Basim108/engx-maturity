@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "engx.schema.json",
+  "title": "Engineering Excellence",
+  "description": "A root object for all EngX data.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "description": "id of a root categories, so to identify their json files."
+      }
+    }
+  },
+  "required": ["categories"]
+}

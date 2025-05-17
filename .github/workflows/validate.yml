@@ -7,7 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Validate JSON
+      - name: Validate EngX JSON
+        uses: docker://orrosenblatt/validate-json-action:latest
+        env:
+          INPUT_SCHEMA: /data/schemas/engx.schema.json
+          INPUT_JSONS: /data/engx.json
+      - name: Validate Agile Health JSON
         uses: docker://orrosenblatt/validate-json-action:latest
         env:
           INPUT_SCHEMA: /data/schemas/category.schema.json

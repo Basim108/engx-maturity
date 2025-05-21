@@ -5,7 +5,7 @@ const path = require('path');
 const RULE_FILE_PATTERN = '*.rules.json';
 const RULES_FOLDER_PATH = path.resolve(__dirname, '../../data/rules/');
 
-describe('Validate rule uniqueness', () => {
+describe('Validate uniqueness', () => {
 
     test('should not have duplicated rule ids', () => {
         // Arrange
@@ -18,7 +18,7 @@ describe('Validate rule uniqueness', () => {
             const fileFullName = path.resolve(RULES_FOLDER_PATH, file);
             const category = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
 
-            traverseCategory({
+            traverseCategoryForRules({
                 keyAccessor: x => x.ruleId,
                 category,
                 ruleIds: rules,
@@ -48,7 +48,7 @@ describe('Validate rule uniqueness', () => {
             const fileFullName = path.resolve(RULES_FOLDER_PATH, file);
             const category = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
 
-            traverseCategory({
+            traverseCategoryForRules({
                 keyAccessor: x => x.title,
                 category,
                 ruleIds: rules,
@@ -67,11 +67,41 @@ describe('Validate rule uniqueness', () => {
         expect(duplicates.size, errorMsg).toBe(0);
     });
 
-    function traverseCategory(info) {
+    test('should not have duplicated category ids within one file', () => {
+        const ruleFiles = glob.sync(RULE_FILE_PATTERN, {cwd: RULES_FOLDER_PATH});
+
+        ruleFiles.forEach(file => {
+            // Arrange
+            const fileFullName = path.resolve(RULES_FOLDER_PATH, file);
+            const category = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
+            const categories = new Map();
+            const duplicates = new Set();
+
+            // Act
+            traverseCategoryForCategories({
+                keyAccessor: x => x.categoryId,
+                category,
+                categoryIds: categories,
+                duplicateIds: duplicates,
+                categoryPath: `/${category.categoryId}`
+            });
+
+            // Assert
+            let errorMsg = '';
+            if (duplicates.size > 0) {
+                const firstDuplicateId = duplicates.values().next().value;
+                const otherCategories = categories.get(firstDuplicateId).map(info => info.categoryPath).join('\n');
+                errorMsg = `CategoryId ${firstDuplicateId} is duplicated in the following paths:\n${otherCategories}`;
+            }
+            expect(duplicates.size, errorMsg).toBe(0);
+        })
+    });
+
+    function traverseCategoryForRules(info) {
         const {keyAccessor, category, ruleIds, duplicateIds, categoryPath} = info;
         if (category.rules) {
             category.rules.forEach(rule => {
-                var key = keyAccessor(rule);
+                const key = keyAccessor(rule);
                 const existedInfo = ruleIds.get(key)
                 if (existedInfo === undefined) {
                     ruleIds.set(key, [{
@@ -88,7 +118,7 @@ describe('Validate rule uniqueness', () => {
             })
         }
         if (category.children) {
-            category.children.forEach(child => traverseCategory({
+            category.children.forEach(child => traverseCategoryForRules({
                 keyAccessor,
                 category: child,
                 ruleIds,
@@ -97,4 +127,34 @@ describe('Validate rule uniqueness', () => {
             }))
         }
     }
-});
+
+    function traverseCategoryForCategories(info) {
+        const {keyAccessor, category, categoryIds, duplicateIds, categoryPath} = info;
+
+        const key = keyAccessor(category);
+        const existedInfo = categoryIds.get(key)
+        if (existedInfo === undefined) {
+            categoryIds.set(key, [{
+                categoryPath,
+                category
+            }])
+        } else {
+            duplicateIds.add(key);
+            existedInfo.push({
+                categoryPath,
+                category
+            })
+        }
+
+        if (category.children) {
+            category.children.forEach(child => traverseCategoryForCategories({
+                keyAccessor,
+                category: child,
+                categoryIds,
+                duplicateIds,
+                categoryPath: `${categoryPath}/${child.categoryId}`
+            }))
+        }
+    }
+})
+;

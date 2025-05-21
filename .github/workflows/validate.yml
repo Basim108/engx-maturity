@@ -3,6 +3,33 @@ name: Validate JSONs
 on: [pull_request, push]
 
 jobs:
+  engx-data-unit-tests:
+    name: Run Tests on EngX Data
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: tests/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd tests
+          npm ci
+
+      - name: Run tests
+        run: |
+          cd tests
+          npm run test
+
   verify-rules-json-data:
     runs-on: ubuntu-latest
     steps:

@@ -46,3 +46,7 @@ For example,
 - fix/spelling-issues-in-agile-health-rules
 
 
+## Setup local environment 
+
+- [Setup development tools](docs/DEVELOPMENT.md) to validate data schema, etc.
+- [Setup and use of Structurizr](docs/STRUCTURIZR.md) to view diagrams, documentation, and architecture decision records ADRs.

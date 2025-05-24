@@ -1,6 +1,6 @@
 # Development
 
-## Local validation
+## Local Validation
 For local validation of json data I recommend using [ajv-cli](https://www.npmjs.com/package/ajv-cli)
 
 For example,

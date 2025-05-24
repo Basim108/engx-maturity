@@ -1,0 +1,550 @@
+{
+    "configuration": {},
+    "description": "Description",
+    "documentation": {},
+    "id": 1,
+    "lastModifiedAgent": "structurizr-cli/",
+    "lastModifiedDate": "2025-05-16T06:21:26Z",
+    "lastModifiedUser": "root@hrimlab",
+    "model": {
+        "people": [
+            {
+                "description": "A customer user that receives EngX Maturity service.",
+                "id": "2",
+                "location": "Unspecified",
+                "name": "Customer",
+                "properties": {
+                    "structurizr.dsl.identifier": "user"
+                },
+                "relationships": [
+                    {
+                        "description": "Add data (rules, practices, etc)",
+                        "destinationId": "10",
+                        "id": "13",
+                        "sourceId": "2",
+                        "tags": "Relationship",
+                        "technology": "Specific data that applied in one or several companies"
+                    },
+                    {
+                        "description": "Assess a project",
+                        "destinationId": "10",
+                        "id": "14",
+                        "sourceId": "2",
+                        "tags": "Relationship,ReadWrite"
+                    },
+                    {
+                        "description": "View common rules",
+                        "destinationId": "10",
+                        "id": "15",
+                        "sourceId": "2",
+                        "tags": "Relationship,Read",
+                        "technology": "For example, code review check list"
+                    },
+                    {
+                        "description": "View common check lists",
+                        "destinationId": "10",
+                        "id": "16",
+                        "sourceId": "2",
+                        "tags": "Relationship,Read",
+                        "technology": "For example, code review check list"
+                    },
+                    {
+                        "description": "Generate specific check lists",
+                        "destinationId": "10",
+                        "id": "17",
+                        "sourceId": "2",
+                        "tags": "Relationship,Write"
+                    }
+                ],
+                "tags": "Element,Person"
+            },
+            {
+                "description": "Any specialist in dev, qa, ba, pm, etc.",
+                "id": "3",
+                "location": "Unspecified",
+                "name": "EngX Contributor",
+                "properties": {
+                    "structurizr.dsl.identifier": "contributor"
+                },
+                "relationships": [
+                    {
+                        "description": "Request for Review of Data Changes Proposal",
+                        "destinationId": "4",
+                        "id": "7",
+                        "sourceId": "3",
+                        "tags": "Relationship,Pull Request",
+                        "technology": "GitHub"
+                    }
+                ],
+                "tags": "Element,Person"
+            },
+            {
+                "description": "A GitHub repository maintainer.",
+                "id": "4",
+                "location": "Unspecified",
+                "name": "EngX Product Owner",
+                "properties": {
+                    "structurizr.dsl.identifier": "maintainer"
+                },
+                "relationships": [
+                    {
+                        "description": "Merge Pull Request",
+                        "destinationId": "6",
+                        "id": "8",
+                        "sourceId": "4",
+                        "tags": "Relationship,Write",
+                        "technology": "GitHub"
+                    },
+                    {
+                        "description": "Merge Pull Request",
+                        "destinationId": "5",
+                        "id": "9",
+                        "linkedRelationshipId": "8",
+                        "sourceId": "4",
+                        "technology": "GitHub"
+                    }
+                ],
+                "tags": "Element,Person"
+            }
+        ],
+        "softwareSystems": [
+            {
+                "description": "A dictionary of terminologies to share between all team members and stackholders.",
+                "documentation": {
+                    "sections": [
+                        {
+                            "content": "# Ubiquitous Language\n\n## EngX, Engineering Excellence\n\n**Engineering Excellence** embodies a culture and a set of practices within a software engineering organization that consistently lead to the creation of high-quality, robust, scalable, secure, and maintainable software efficiently and effectively. \nIt's not merely about writing good code; it encompasses the entire software development lifecycle, from initial conceptualization to ongoing maintenance and evolution.",
+                            "format": "Markdown",
+                            "order": 1,
+                            "title": ""
+                        }
+                    ]
+                },
+                "id": "1",
+                "location": "Unspecified",
+                "name": "Ubiquitous Language",
+                "properties": {
+                    "structurizr.dsl.identifier": "ubiquitouslanguage"
+                },
+                "tags": "Element,Software System"
+            },
+            {
+                "containers": [
+                    {
+                        "description": "database for EngX data e.g. rules, metrics, maturety levels, etc",
+                        "documentation": {},
+                        "id": "6",
+                        "name": "EngX Database",
+                        "properties": {
+                            "structurizr.dsl.identifier": "datamanagement.engxdb"
+                        },
+                        "tags": "Element,Container,DB",
+                        "technology": "GitHub"
+                    }
+                ],
+                "description": "Responsible for collecting EngX data.",
+                "documentation": {
+                    "decisions": [
+                        {
+                            "content": "# 1. Store Engineering Excellence Maturity Rules and Metrics on GitHub\n\nDate: 2025-05-08\n\n## Status\n\nAccepted\n\n## Context\n\nTo effectively manage contributions and maintain the integrity of our engineering excellence maturity rules and metrics dataset from multiple users, we require a version control system. GitHub, with its robust pull request workflow, provides an ideal platform for this purpose.\n\n## Decision\n\nWe will store all data related to engineering excellence, including maturity rules and associated metrics, in JSON format. To ensure data consistency and facilitate programmatic validation, we will define a comprehensive JSON schema.\n\nAll modifications to the dataset will be managed through GitHub pull requests.\n\n## Consequences\n\nImplementing this decision will provide the following benefits:\n\n- **Version Control:** Git will track all changes to the dataset, allowing for easy rollback and historical analysis.\n- **Collaborative Review:** The pull request process will enable thorough review and discussion of proposed changes before they are merged. This review process will serve as a mechanism for data moderation and quality assurance.\n- **Transparency:** All changes and discussions will be visible and auditable within the GitHub repository, fostering transparency within the project.\n- **Community Contribution:** The familiar GitHub workflow will lower the barrier to entry for community contributions to the dataset.\n- **Data Validation:** The defined JSON schema will allow for automated validation of proposed data changes, ensuring data integrity and adherence to the established structure.",
+                            "date": "2025-05-08T00:00:00Z",
+                            "format": "Markdown",
+                            "id": "1",
+                            "status": "Accepted",
+                            "title": "Store Engineering Excellence Maturity Rules and Metrics on GitHub"
+                        }
+                    ]
+                },
+                "id": "5",
+                "location": "Unspecified",
+                "name": "Data Management System",
+                "properties": {
+                    "structurizr.dsl.identifier": "datamanagement"
+                },
+                "tags": "Element,Software System,DB"
+            },
+            {
+                "containers": [
+                    {
+                        "description": "User specific EngX data",
+                        "documentation": {},
+                        "id": "11",
+                        "name": "User EngX Database",
+                        "properties": {
+                            "structurizr.dsl.identifier": "website.userengxdb"
+                        },
+                        "tags": "Element,Container,DB",
+                        "technology": "PostgreSql"
+                    },
+                    {
+                        "documentation": {},
+                        "id": "12",
+                        "name": "Website.Backend",
+                        "properties": {
+                            "structurizr.dsl.identifier": "website.backend"
+                        },
+                        "relationships": [
+                            {
+                                "description": "Save engX data",
+                                "destinationId": "11",
+                                "id": "18",
+                                "sourceId": "12",
+                                "tags": "Relationship,Write"
+                            },
+                            {
+                                "description": "Save check list",
+                                "destinationId": "11",
+                                "id": "19",
+                                "sourceId": "12",
+                                "tags": "Relationship,Write"
+                            },
+                            {
+                                "description": "Save engX assessment results",
+                                "destinationId": "11",
+                                "id": "20",
+                                "sourceId": "12",
+                                "tags": "Relationship,Write"
+                            },
+                            {
+                                "description": "Get common check lists",
+                                "destinationId": "6",
+                                "id": "21",
+                                "sourceId": "12",
+                                "tags": "Relationship,Read",
+                                "technology": "GitHub"
+                            },
+                            {
+                                "description": "Get common check lists",
+                                "destinationId": "5",
+                                "id": "22",
+                                "linkedRelationshipId": "21",
+                                "sourceId": "12",
+                                "technology": "GitHub"
+                            },
+                            {
+                                "description": "Get common data",
+                                "destinationId": "6",
+                                "id": "25",
+                                "sourceId": "12",
+                                "tags": "Relationship,Read",
+                                "technology": "GitHub"
+                            }
+                        ],
+                        "tags": "Element,Container"
+                    }
+                ],
+                "description": "Website that provides UI to EngX Maturity features",
+                "documentation": {},
+                "id": "10",
+                "location": "Unspecified",
+                "name": "Website",
+                "properties": {
+                    "structurizr.dsl.identifier": "website"
+                },
+                "relationships": [
+                    {
+                        "description": "Get common check lists",
+                        "destinationId": "6",
+                        "id": "23",
+                        "linkedRelationshipId": "21",
+                        "sourceId": "10",
+                        "technology": "GitHub"
+                    },
+                    {
+                        "description": "Get common check lists",
+                        "destinationId": "5",
+                        "id": "24",
+                        "linkedRelationshipId": "21",
+                        "sourceId": "10",
+                        "technology": "GitHub"
+                    }
+                ],
+                "tags": "Element,Software System,Website"
+            }
+        ]
+    },
+    "name": "Engineering Excellence Maturity",
+    "properties": {
+        "structurizr.dsl": "d29ya3NwYWNlIHsKICAgICFpZGVudGlmaWVycyBoaWVyYXJjaGljYWwKCiAgICBuYW1lICJFbmdpbmVlcmluZyBFeGNlbGxlbmNlIE1hdHVyaXR5IgoKICAgIG1vZGVsIHsKICAgICAgICB1YmlxdWl0b3VzTGFuZ3VhZ2UgPSBzb2Z0d2FyZVN5c3RlbSAiVWJpcXVpdG91cyBMYW5ndWFnZSIgewogICAgICAgICAgICBkZXNjcmlwdGlvbiAiQSBkaWN0aW9uYXJ5IG9mIHRlcm1pbm9sb2dpZXMgdG8gc2hhcmUgYmV0d2VlbiBhbGwgdGVhbSBtZW1iZXJzIGFuZCBzdGFja2hvbGRlcnMuIgogICAgICAgIAogICAgICAgICAgICAhZG9jcyBjb250YWluZXJzL2RvY3MvdWJpcXVpdG91c19sYW5ndWFnZS5tZCAKICAgICAgICB9CiAgICAgICAgCiAgICAgICAgdXNlciA9IHBlcnNvbiAiQ3VzdG9tZXIiICJBIGN1c3RvbWVyIHVzZXIgdGhhdCByZWNlaXZlcyBFbmdYIE1hdHVyaXR5IHNlcnZpY2UuIgogICAgICAgIGNvbnRyaWJ1dG9yID0gcGVyc29uICJFbmdYIENvbnRyaWJ1dG9yIiAiQW55IHNwZWNpYWxpc3QgaW4gZGV2LCBxYSwgYmEsIHBtLCBldGMuIgogICAgICAgIG1haW50YWluZXIgPSBwZXJzb24gIkVuZ1ggUHJvZHVjdCBPd25lciIgIkEgR2l0SHViIHJlcG9zaXRvcnkgbWFpbnRhaW5lci4iCgogICAgICAgIGRhdGFNYW5hZ2VtZW50ID0gc29mdHdhcmVTeXN0ZW0gIkRhdGEgTWFuYWdlbWVudCBTeXN0ZW0iIHsKICAgICAgICAgICAgZGVzY3JpcHRpb24gIlJlc3BvbnNpYmxlIGZvciBjb2xsZWN0aW5nIEVuZ1ggZGF0YS4iCiAgICAgICAgCiAgICAgICAgICAgICFhZHJzIGNvbnRhaW5lcnMvYWRycy9kYXRhCiAgICAgICAgICAgIAogICAgICAgICAgICBlbmd4REIgPSBjb250YWluZXIgIkVuZ1ggRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgR2l0SHViCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiZGF0YWJhc2UgZm9yIEVuZ1ggZGF0YSBlLmcuIHJ1bGVzLCBtZXRyaWNzLCBtYXR1cmV0eSBsZXZlbHMsIGV0YyIKICAgICAgICAgICAgICAgIHRhZ3MgIERCCiAgICAgICAgICAgIH0KICAgICAgICAgICAgCiAgICAgICAgICAgIHRhZ3MgREIKICAgICAgICB9CiAgICAgICAgCiAgICAgICAgY29udHJpYnV0b3IgLT4gbWFpbnRhaW5lciAiUmVxdWVzdCBmb3IgUmV2aWV3IG9mIERhdGEgQ2hhbmdlcyBQcm9wb3NhbCIgR2l0SHViICJQdWxsIFJlcXVlc3QiCiAgICAgICAgbWFpbnRhaW5lciAtPiBkYXRhTWFuYWdlbWVudC5lbmd4REIgIk1lcmdlIFB1bGwgUmVxdWVzdCIgR2l0SHViIFdyaXRlCiAgICAgICAgCiAgICAgICAgd2Vic2l0ZSA9IHNvZnR3YXJlU3lzdGVtICJXZWJzaXRlIiB7CiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJXZWJzaXRlIHRoYXQgcHJvdmlkZXMgVUkgdG8gRW5nWCBNYXR1cml0eSBmZWF0dXJlcyIKICAgICAgICAKICAgICAgICAgICAgdGFncyBXZWJzaXRlCiAgICAgICAgICAgIAogICAgICAgICAgICB1c2VyRW5neERCID0gY29udGFpbmVyICJVc2VyIEVuZ1ggRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgUG9zdGdyZVNxbAogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIlVzZXIgc3BlY2lmaWMgRW5nWCBkYXRhIgogICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICB0YWdzICBEQgogICAgICAgICAgICB9CiAgICAgICAgICAgIAogICAgICAgICAgICBiYWNrZW5kID0gY29udGFpbmVyICJXZWJzaXRlLkJhY2tlbmQiIHsKICAgICAgICAgICAgICAgIAogICAgICAgICAgICB9CiAgICAgICAgfQogICAgICAgIAogICAgICAgIHVzZXIgLT4gd2Vic2l0ZSAiQWRkIGRhdGEgKHJ1bGVzLCBwcmFjdGljZXMsIGV0YykiICJTcGVjaWZpYyBkYXRhIHRoYXQgYXBwbGllZCBpbiBvbmUgb3Igc2V2ZXJhbCBjb21wYW5pZXMiCiAgICAgICAgdXNlciAtPiB3ZWJzaXRlICJBc3Nlc3MgYSBwcm9qZWN0IiAiIiBSZWFkV3JpdGUKICAgICAgICB1c2VyIC0+IHdlYnNpdGUgIlZpZXcgY29tbW9uIHJ1bGVzIiAiRm9yIGV4YW1wbGUsIGNvZGUgcmV2aWV3IGNoZWNrIGxpc3QiIFJlYWQKICAgICAgICB1c2VyIC0+IHdlYnNpdGUgIlZpZXcgY29tbW9uIGNoZWNrIGxpc3RzIiAiRm9yIGV4YW1wbGUsIGNvZGUgcmV2aWV3IGNoZWNrIGxpc3QiIFJlYWQKICAgICAgICB1c2VyIC0+IHdlYnNpdGUgIkdlbmVyYXRlIHNwZWNpZmljIGNoZWNrIGxpc3RzIiAiIiBXcml0ZQogICAgICAgIAogICAgICAgIHdlYnNpdGUuYmFja2VuZCAtPiB3ZWJzaXRlLnVzZXJFbmd4REIgIlNhdmUgZW5nWCBkYXRhIiAiIiBXcml0ZQogICAgICAgIHdlYnNpdGUuYmFja2VuZCAtPiB3ZWJzaXRlLnVzZXJFbmd4REIgIlNhdmUgY2hlY2sgbGlzdCIgIiIgV3JpdGUKICAgICAgICB3ZWJzaXRlLmJhY2tlbmQgLT4gd2Vic2l0ZS51c2VyRW5neERCICJTYXZlIGVuZ1ggYXNzZXNzbWVudCByZXN1bHRzIiAiIiBXcml0ZQogICAgICAgIAogICAgICAgIHdlYnNpdGUuYmFja2VuZCAtPiBkYXRhTWFuYWdlbWVudC5lbmd4REIgIkdldCBjb21tb24gY2hlY2sgbGlzdHMiIEdpdEh1YiBSZWFkCiAgICAgICAgd2Vic2l0ZS5iYWNrZW5kIC0+IGRhdGFNYW5hZ2VtZW50LmVuZ3hEQiAiR2V0IGNvbW1vbiBkYXRhIiBHaXRIdWIgUmVhZAogICAgfQoKICAgIHZpZXdzIHsgICAgICAgICAgICAgICAgCiAgICAgICAgdGhlbWUgZGVmYXVsdAoKICAgICAgICBzeXN0ZW1MYW5kc2NhcGUgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgCiAgICAgICAgfSAKICAgICAgICAKICAgICAgICBjb250YWluZXIgd2Vic2l0ZSB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgIAogICAgICAgICAgICBkZXNjcmlwdGlvbiAiV2Vic2l0ZSBTb2x1dGlvbiBPdmVydmlldyIKICAgICAgICB9CgogICAgICAgIHN0eWxlcyB7CiAgICAgICAgICAgICFjb25zdCBNUV9PUFMgI2RmODAxZAogICAgICAgICAgICAhY29uc3QgUkVBRCAjMjNhYmEwCiAgICAgICAgICAgICFjb25zdCBXUklURSAjNTAyM2FiCiAgICAgICAgICAgICFjb25zdCBSRUFEX1dSSVRFICMwODQyN2IKICAgICAgICAgICAgCiAgICAgICAgICAgICFjb25zdCBMSUdIVF9SRUQgI2ZiYjNiMwogICAgICAgICAgICAhY29uc3QgT1JBTkdFICNmNTllMGIKICAgICAgICAgICAgCiAgICAgICAgICAgIGVsZW1lbnQgIkVsZW1lbnQiIHsKICAgICAgICAgICAgICAgIGZvbnRTaXplIDMwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICJSZWxhdGlvbnNoaXAiIHsKICAgICAgICAgICAgICAgIGZvbnRTaXplIDMyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgCiAgICAgICAgICAgIGVsZW1lbnQgIkNsb3VkIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBFbGxpcHNlCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kIHdoaXRlCiAgICAgICAgICAgICAgICBjb2xvciAke09SQU5HRX0KICAgICAgICAgICAgICAgIHN0cm9rZSAke09SQU5HRX0KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEQiIgewogICAgICAgICAgICAgICAgc2hhcGUgQ3lsaW5kZXIKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgd2hpdGUKICAgICAgICAgICAgICAgIGNvbG9yIGJsYWNrCiAgICAgICAgICAgICAgICBzdHJva2UgYmxhY2sKICAgICAgICAgICAgICAgIGZvbnRTaXplIDM2CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ2FjaGUiIHsKICAgICAgICAgICAgICAgIHNoYXBlIEN5bGluZGVyCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kIHdoaXRlCiAgICAgICAgICAgICAgICBjb2xvciBibGFjawogICAgICAgICAgICAgICAgc3Ryb2tlIHJlZAogICAgICAgICAgICAgICAgZm9udFNpemUgMzYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJFbGFzdGljU2VhcmNoIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBDeWxpbmRlcgogICAgICAgICAgICAgICAgYmFja2dyb3VuZCB3aGl0ZQogICAgICAgICAgICAgICAgY29sb3IgYmxhY2sKICAgICAgICAgICAgICAgIHN0cm9rZSBibHVlCiAgICAgICAgICAgICAgICBmb250U2l6ZSAzNgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlNvZnR3YXJlIFN5c3RlbSIgewogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkV4dGVybmFsIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCBncmV5CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiV2Vic2l0ZSIgewogICAgICAgICAgICAgICAgc2hhcGUgV2ViQnJvd3NlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkVtYWlsIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kIHdoaXRlCiAgICAgICAgICAgICAgICBmb250U2l6ZSAzNgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgc2hhcGUgQ29tcG9uZW50CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiPz8/IiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICR7TElHSFRfUkVEfQogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiPz8/IiB7CiAgICAgICAgICAgICAgICBjb2xvciByZWQKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgIlByb2R1Y2UiIHsKICAgICAgICAgICAgICAgIGNvbG9yICR7TVFfT1BTfQogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiVXNlcyIgewogICAgICAgICAgICAgICAgY29sb3IgJHtSRUFEX1dSSVRFfQogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiUmVhZCIgewogICAgICAgICAgICAgICAgY29sb3IgJHtSRUFEfQogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiV3JpdGUiIHsKICAgICAgICAgICAgICAgIGNvbG9yICR7V1JJVEV9CiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICJSZWFkV3JpdGUiIHsKICAgICAgICAgICAgICAgIGNvbG9yICR7UkVBRF9XUklURX0KICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KfQ=="
+    },
+    "views": {
+        "configuration": {
+            "branding": {},
+            "lastSavedView": "SystemLandscape-001",
+            "styles": {
+                "elements": [
+                    {
+                        "fontSize": 30,
+                        "tag": "Element"
+                    },
+                    {
+                        "background": "#ffffff",
+                        "color": "#f59e0b",
+                        "shape": "Ellipse",
+                        "stroke": "#f59e0b",
+                        "tag": "Cloud"
+                    },
+                    {
+                        "background": "#ffffff",
+                        "color": "#000000",
+                        "fontSize": 36,
+                        "shape": "Cylinder",
+                        "stroke": "#000000",
+                        "tag": "DB"
+                    },
+                    {
+                        "background": "#ffffff",
+                        "color": "#000000",
+                        "fontSize": 36,
+                        "shape": "Cylinder",
+                        "stroke": "#ff0000",
+                        "tag": "Cache"
+                    },
+                    {
+                        "background": "#ffffff",
+                        "color": "#000000",
+                        "fontSize": 36,
+                        "shape": "Cylinder",
+                        "stroke": "#0000ff",
+                        "tag": "ElasticSearch"
+                    },
+                    {
+                        "tag": "Software System"
+                    },
+                    {
+                        "background": "#808080",
+                        "tag": "External System"
+                    },
+                    {
+                        "shape": "WebBrowser",
+                        "tag": "Website"
+                    },
+                    {
+                        "background": "#ffffff",
+                        "fontSize": 36,
+                        "tag": "Email"
+                    },
+                    {
+                        "shape": "Component",
+                        "tag": "Component"
+                    },
+                    {
+                        "background": "#fbb3b3",
+                        "tag": "???"
+                    }
+                ],
+                "relationships": [
+                    {
+                        "fontSize": 32,
+                        "tag": "Relationship"
+                    },
+                    {
+                        "color": "#ff0000",
+                        "tag": "???"
+                    },
+                    {
+                        "color": "#df801d",
+                        "tag": "Produce"
+                    },
+                    {
+                        "color": "#08427b",
+                        "tag": "Uses"
+                    },
+                    {
+                        "color": "#23aba0",
+                        "tag": "Read"
+                    },
+                    {
+                        "color": "#5023ab",
+                        "tag": "Write"
+                    },
+                    {
+                        "color": "#08427b",
+                        "tag": "ReadWrite"
+                    }
+                ]
+            },
+            "terminology": {},
+            "themes": [
+                "https://static.structurizr.com/themes/default/theme.json"
+            ]
+        },
+        "containerViews": [
+            {
+                "description": "Website Solution Overview",
+                "dimensions": {
+                    "height": 1671,
+                    "width": 2290
+                },
+                "elements": [
+                    {
+                        "id": "5",
+                        "x": 1785,
+                        "y": 175
+                    },
+                    {
+                        "id": "11",
+                        "x": 105,
+                        "y": 1070
+                    },
+                    {
+                        "id": "12",
+                        "x": 900,
+                        "y": 175
+                    }
+                ],
+                "externalSoftwareSystemBoundariesVisible": false,
+                "generatedKey": true,
+                "key": "Container-001",
+                "order": 2,
+                "relationships": [
+                    {
+                        "id": "18",
+                        "vertices": [
+                            {
+                                "x": 1125,
+                                "y": 1215
+                            }
+                        ]
+                    },
+                    {
+                        "id": "19"
+                    },
+                    {
+                        "id": "20",
+                        "vertices": [
+                            {
+                                "x": 340,
+                                "y": 330
+                            }
+                        ]
+                    },
+                    {
+                        "id": "22"
+                    }
+                ],
+                "softwareSystemId": "10"
+            }
+        ],
+        "systemLandscapeViews": [
+            {
+                "dimensions": {
+                    "height": 2030,
+                    "width": 3367
+                },
+                "elements": [
+                    {
+                        "id": "1",
+                        "x": 45,
+                        "y": 65
+                    },
+                    {
+                        "id": "2",
+                        "x": 2099,
+                        "y": 165
+                    },
+                    {
+                        "id": "3",
+                        "x": 625,
+                        "y": 200
+                    },
+                    {
+                        "id": "4",
+                        "x": 160,
+                        "y": 800
+                    },
+                    {
+                        "id": "5",
+                        "x": 670,
+                        "y": 1605
+                    },
+                    {
+                        "id": "10",
+                        "x": 2104,
+                        "y": 1375
+                    }
+                ],
+                "enterpriseBoundaryVisible": true,
+                "generatedKey": true,
+                "key": "SystemLandscape-001",
+                "order": 1,
+                "relationships": [
+                    {
+                        "id": "13",
+                        "vertices": [
+                            {
+                                "x": 1664,
+                                "y": 370
+                            },
+                            {
+                                "x": 1674,
+                                "y": 1530
+                            }
+                        ]
+                    },
+                    {
+                        "id": "14"
+                    },
+                    {
+                        "id": "15",
+                        "vertices": [
+                            {
+                                "x": 2864,
+                                "y": 360
+                            }
+                        ]
+                    },
+                    {
+                        "id": "16",
+                        "vertices": [
+                            {
+                                "x": 1849,
+                                "y": 365
+                            }
+                        ]
+                    },
+                    {
+                        "id": "17",
+                        "vertices": [
+                            {
+                                "x": 3084,
+                                "y": 360
+                            },
+                            {
+                                "x": 3094,
+                                "y": 1535
+                            }
+                        ]
+                    },
+                    {
+                        "id": "24",
+                        "vertices": [
+                            {
+                                "x": 2335,
+                                "y": 1765
+                            }
+                        ]
+                    },
+                    {
+                        "id": "7",
+                        "vertices": [
+                            {
+                                "x": 830,
+                                "y": 1010
+                            }
+                        ]
+                    },
+                    {
+                        "id": "9",
+                        "vertices": [
+                            {
+                                "x": 360,
+                                "y": 1750
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

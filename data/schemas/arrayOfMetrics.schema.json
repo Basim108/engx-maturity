@@ -4,6 +4,6 @@
   "additionalProperties": false,
   "minItems": 0,
   "items": {
-    "$ref": "rule.schema.json#"
+    "$ref": "metric.schema.json#"
   }
 }

@@ -5,7 +5,7 @@ const path = require('path');
 const RULE_FILE_PATTERN = '**/*.rules.json';
 const RULES_FOLDER_PATH = path.resolve(__dirname, '../../data/rules/');
 
-describe('Validate data uniqueness', () => {
+describe('Validate metrics uniqueness', () => {
 
     test('should not have duplicated rule ids', () => {
         // Arrange
@@ -49,7 +49,7 @@ describe('Validate data uniqueness', () => {
             const arrayOfRules = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
 
             findDuplicatedRules({
-                keyAccessor: x => x.title,
+                keyAccessor: x => x.statement,
                 arrayOfRules,
                 ruleIds: rules,
                 duplicatedKeys,
@@ -67,10 +67,15 @@ describe('Validate data uniqueness', () => {
         expect(duplicatedKeys.size, errorMsg).toBe(0);
     });
 
+    // TODO: check that there is no related metrics that where not presented in any of **/*.metrics.json files
+    // TODO: check that there is no metric that has duplicates in articles.url, articles.title, metricId
+
     function findDuplicatedRules(info) {
         const {keyAccessor, arrayOfRules, ruleIds, duplicatedKeys, fileName} = info;
         arrayOfRules.forEach(rule => {
             const key = keyAccessor(rule);
+            if(key === undefined)
+                return;
             const existedInfo = ruleIds.get(key)
             if (existedInfo === undefined) {
                 ruleIds.set(key, [{
@@ -87,4 +92,3 @@ describe('Validate data uniqueness', () => {
         })
     }
 })
-;

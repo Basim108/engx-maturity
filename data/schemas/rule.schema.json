@@ -9,9 +9,13 @@
     "ruleId": {
       "$ref": "types.schema.json#/$defs/uuid"
     },
-    "title": {
+    "statement": {
       "type": "string",
-      "description": "Brief summary of a rule"
+      "description": "Brief summary of a rule in imperative form for guidelines"
+    },
+    "question": {
+      "type": "string",
+      "description": "Brief summary of a rule in interrogative form for questionnaires/assessments"
     },
     "description": {
       "type": "string",
@@ -19,7 +23,7 @@
     },
     "tags": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "uniqueItems": true,
       "items": {
         "type": "string",
@@ -28,11 +32,19 @@
     },
     "articles": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "$ref": "types.schema.json#/$defs/resourceUrl"
       }
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "types.schema.json#/$defs/uniqueId"
+      }
     }
   },
-  "required": ["ruleId", "title"]
+  "required": ["ruleId", "question"]
 }

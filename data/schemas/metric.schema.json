@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "metric.schema.json",
+  "title": "Metric",
+  "description": "A measurement that allows to reveal current situation of EngX.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "metricId": {
+      "$ref": "types.schema.json#/$defs/uniqueId"
+    },
+    "related": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "types.schema.json#/$defs/uniqueId"
+      }
+    },
+    "articles": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "$ref": "types.schema.json#/$defs/resourceUrl"
+      }
+    }
+  },
+  "required": ["metricId"]
+}

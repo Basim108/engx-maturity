@@ -1,0 +1,94 @@
+[
+  {
+    "metricId": "review-time",
+    "articles": [
+      {
+        "url": "docs/metrics/review-time",
+        "title": "How long does it take to conduct a one cycle of review an artifact (code, requirement, test-plan, etc)."
+      }
+    ]
+  },
+  {
+    "metricId": "review-cycles",
+    "articles": [
+      {
+        "url": "docs/metrics/review-cycles",
+        "title": "The number of review cycles it takes to approve a request."
+      }
+    ]
+  },
+  {
+    "metricId": "lead-time",
+    "articles": [
+      {
+        "url": "docs/metrics/lead-time",
+        "title": "The total period of time a task has been on a review, including waiting when the first reviewer starts a review, many review cycles, till getting an approval from the very last reviewer."
+      }
+    ]
+  },
+  {
+    "metricId": "review-feedback-quality",
+    "articles": [
+      {
+        "url": "docs/metrics/review-feedback-quality",
+        "title": "The clarity, relevance, and usefulness of comments provided during review."
+      }
+    ]
+  },
+  {
+    "metricId": "requirement-review-efficiency",
+    "articles": [
+      {
+        "url": "docs/metrics/requirement-review-efficiency",
+        "title": "How quickly and thoroughly reviewers complete their tasks."
+      }
+    ],
+    "related": ["post-merge-bugs", "post-release-changes"]
+  },
+  {
+    "metricId": "code-review-efficiency",
+    "articles": [
+      {
+        "url": "docs/metrics/code-review-efficiency",
+        "title": "How quickly and thoroughly reviewers complete their tasks."
+      }
+    ],
+    "related": ["post-merge-bugs", "review-bugs"]
+  },
+  {
+    "metricId": "review-bugs",
+    "articles": [
+      {
+        "url": "docs/metrics/review-bugs",
+        "title": "The number of bugs or defects discovered during the review process."
+      }
+    ]
+  },
+  {
+    "metricId": "post-merge-bugs",
+    "articles": [
+      {
+        "url": "docs/metrics/post-merge-bugs",
+        "title": "The number of bugs found after merging, indicating the effectiveness of the review in catching defects."
+      }
+    ]
+  },
+  {
+    "metricId": "review-feedback",
+    "articles": [
+      {
+        "url": "docs/metrics/review-feedback",
+        "title": "The number and type of comments made during reviews, indicating the thoroughness of the review."
+      }
+    ]
+  },
+  {
+  "metricId": "change-failure-rate",
+  "articles": [
+    {
+      "url": "docs/metrics/change-failure-rate",
+      "title": "The rate at which code changes lead to errors or bugs after merging."
+    }
+  ]
+}
+]

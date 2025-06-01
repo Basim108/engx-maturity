@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
+const {findDuplicatedMetrics} = require('./utils/testUtils.js');
 
 const METRIC_FILE_PATTERN = '**/*.metrics.json';
 const METRICS_FOLDER_PATH = path.resolve(__dirname, '../../data/rules/');
@@ -18,7 +19,7 @@ describe('Validate metrics uniqueness', () => {
             const fileFullName = path.resolve(METRICS_FOLDER_PATH, file);
             const arrayOfRules = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
 
-            findDuplicatedRules({
+            findDuplicatedMetrics({
                 keyAccessor: x => x.metricId,
                 arrayOfRules,
                 ruleIds: metrics,
@@ -48,10 +49,10 @@ describe('Validate metrics uniqueness', () => {
             fileMetrics.forEach(x => allMetricIds.set(x.metricId, x));
         })
         allMetricIds.values().forEach(metric => {
-            if(metric.related === undefined || metric.related.length === 0)
+            if (metric.related === undefined || metric.related.length === 0)
                 return;
             const notReferencedIds = metric.related.filter(relatedMetricId => allMetricIds.get(relatedMetricId) === undefined);
-            if(notReferencedIds.length > 0)
+            if (notReferencedIds.length > 0)
                 notExistedMetricIds.set(metric.metricId, notReferencedIds);
         })
 
@@ -64,26 +65,4 @@ describe('Validate metrics uniqueness', () => {
         }
         expect(notExistedMetricIds.size, errorMsg).toBe(0);
     });
-
-    function findDuplicatedRules(info) {
-        const {keyAccessor, arrayOfRules, ruleIds, duplicatedKeys, fileName} = info;
-        arrayOfRules.forEach(rule => {
-            const key = keyAccessor(rule);
-            if (key === undefined)
-                return;
-            const existedInfo = ruleIds.get(key)
-            if (existedInfo === undefined) {
-                ruleIds.set(key, [{
-                    fileName,
-                    rule
-                }])
-            } else {
-                duplicatedKeys.add(key);
-                existedInfo.push({
-                    fileName,
-                    rule
-                })
-            }
-        })
-    }
 })

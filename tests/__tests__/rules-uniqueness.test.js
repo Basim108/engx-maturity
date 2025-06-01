@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
+const {findDuplicatedRules} = require('./utils/testUtils.js');
 
 const RULE_FILE_PATTERN = '**/*.rules.json';
 const RULES_FOLDER_PATH = path.resolve(__dirname, '../../data/rules/');
@@ -58,12 +59,7 @@ describe('Validate rules uniqueness', () => {
         })
 
         // Assert
-        let errorMsg = '';
-        if (duplicatedKeys.size > 0) {
-            const firstDuplicateId = duplicatedKeys.values().next().value;
-            const otherFiles = rules.get(firstDuplicateId).map(info => info.fileName).join('\n');
-            errorMsg = `Rule title: "${firstDuplicateId}" is duplicated in the following files:\n${otherFiles}`;
-        }
+        const errorMsg = buildErrorMessage(duplicatedKeys, rules);
         expect(duplicatedKeys.size, errorMsg).toBe(0);
     });
 
@@ -88,34 +84,16 @@ describe('Validate rules uniqueness', () => {
         })
 
         // Assert
-        let errorMsg = '';
-        if (duplicatedKeys.size > 0) {
-            const firstDuplicateId = duplicatedKeys.values().next().value;
-            const otherFiles = rules.get(firstDuplicateId).map(info => info.fileName).join('\n');
-            errorMsg = `Rule title: "${firstDuplicateId}" is duplicated in the following files:\n${otherFiles}`;
-        }
+        const errorMsg = buildErrorMessage(duplicatedKeys, rules);
         expect(duplicatedKeys.size, errorMsg).toBe(0);
     });
 
-    function findDuplicatedRules(info) {
-        const {keyAccessor, arrayOfRules, ruleIds, duplicatedKeys, fileName} = info;
-        arrayOfRules.forEach(rule => {
-            const key = keyAccessor(rule);
-            if(key === undefined)
-                return;
-            const existedInfo = ruleIds.get(key)
-            if (existedInfo === undefined) {
-                ruleIds.set(key, [{
-                    fileName,
-                    rule
-                }])
-            } else {
-                duplicatedKeys.add(key);
-                existedInfo.push({
-                    fileName,
-                    rule
-                })
-            }
-        })
+    function buildErrorMessage(duplicatedKeys, rules) {
+        if (duplicatedKeys.size > 0) {
+            const firstDuplicateId = duplicatedKeys.values().next().value;
+            const otherFiles = rules.get(firstDuplicateId).map(info => info.fileName).join('\n');
+            return `Rule title: "${firstDuplicateId}" is duplicated in the following files:\n${otherFiles}`;
+        }
+        return '';
     }
 })

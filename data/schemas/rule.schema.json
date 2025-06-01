@@ -27,7 +27,7 @@
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "description": "for better further search. For example, 'security', 'metrics', etc"
+        "description": "for better further search. For example, all rules about security, or related to developers, etc"
       }
     },
     "articles": {

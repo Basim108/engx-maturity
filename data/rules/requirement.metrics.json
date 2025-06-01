@@ -1,12 +1,15 @@
 [
   {
     "metricId": "post-release-changes",
+    "title": "Post Release Changes",
+    "description": "The number of changes made to the one feature/requirement after it was released.",
+    "interpretations": [],
+    "tags": ["role:ba"],
     "articles": [
       {
-        "url": "docs/metrics/post-release-changes",
-        "title": "The number of changes made to the one feature/requirement after it was released."
+        "url": "docs/metrics/post-release-changes"
       }
     ],
-    "related": [ "requirement-review-efficiency" ]
+    "related": ["requirement-review-efficiency"]
   }
 ]

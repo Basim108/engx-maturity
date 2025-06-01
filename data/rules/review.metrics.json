@@ -1,94 +1,108 @@
 [
   {
     "metricId": "review-time",
+    "title": "Review Time",
+    "description": "How long does it take to conduct a one cycle of review an artifact (code, requirement, test-plan, etc).",
+    "interpretations": [],
     "articles": [
       {
-        "url": "docs/metrics/review-time",
-        "title": "How long does it take to conduct a one cycle of review an artifact (code, requirement, test-plan, etc)."
+        "url": "docs/metrics/review-time"
       }
     ]
   },
   {
     "metricId": "review-cycles",
+    "title": "Review Cycles",
+    "description": "The number of review cycles it takes to approve a request.",
+    "interpretations": [],
     "articles": [
       {
-        "url": "docs/metrics/review-cycles",
-        "title": "The number of review cycles it takes to approve a request."
+        "url": "docs/metrics/review-cycles"
       }
     ]
   },
   {
     "metricId": "lead-time",
+    "title": "Lead Time",
+    "description": "The total period of time a task has been on a review, including waiting when the first reviewer starts a review, many review cycles, till getting an approval from the very last reviewer.",
+    "interpretations": [],
     "articles": [
       {
-        "url": "docs/metrics/lead-time",
-        "title": "The total period of time a task has been on a review, including waiting when the first reviewer starts a review, many review cycles, till getting an approval from the very last reviewer."
+        "url": "docs/metrics/lead-time"
       }
     ]
   },
   {
     "metricId": "review-feedback-quality",
+    "title": "Review Feedback Quality",
+    "description": "The clarity, relevance, and usefulness of comments provided during review.",
+    "interpretations": [],
     "articles": [
       {
-        "url": "docs/metrics/review-feedback-quality",
-        "title": "The clarity, relevance, and usefulness of comments provided during review."
+        "url": "docs/metrics/review-feedback-quality"
       }
     ]
   },
   {
     "metricId": "requirement-review-efficiency",
+    "title": "Requirement Review Efficiency",
+    "description": "How quickly and thoroughly reviewers complete their tasks.",
+    "interpretations": [],
+    "tags": ["role:ba"],
     "articles": [
       {
-        "url": "docs/metrics/requirement-review-efficiency",
-        "title": "How quickly and thoroughly reviewers complete their tasks."
+        "url": "docs/metrics/requirement-review-efficiency"
       }
     ],
     "related": ["post-merge-bugs", "post-release-changes"]
   },
   {
     "metricId": "code-review-efficiency",
+    "title": "Code Review Efficiency",
+    "description": "How quickly and thoroughly reviewers complete their tasks.",
+    "interpretations": [],
+    "tags": ["role:dev"],
     "articles": [
       {
-        "url": "docs/metrics/code-review-efficiency",
-        "title": "How quickly and thoroughly reviewers complete their tasks."
+        "url": "docs/metrics/code-review-efficiency"
       }
     ],
     "related": ["post-merge-bugs", "review-bugs"]
   },
   {
     "metricId": "review-bugs",
+    "title": "Review Bug Discovery Count",
+    "description": "The number of bugs or defects discovered during the review process.",
+    "interpretations": [],
+    "tags": ["role:dev"],
     "articles": [
       {
-        "url": "docs/metrics/review-bugs",
-        "title": "The number of bugs or defects discovered during the review process."
+        "url": "docs/metrics/review-bugs"
       }
     ]
   },
   {
     "metricId": "post-merge-bugs",
+    "title": "Post Merge Bug Discovery Count",
+    "description": "The number of bugs found after merging, indicating the effectiveness of the review in catching defects.",
+    "interpretations": [],
+    "tags": ["role:dev", "role:qa"],
     "articles": [
       {
-        "url": "docs/metrics/post-merge-bugs",
-        "title": "The number of bugs found after merging, indicating the effectiveness of the review in catching defects."
+        "url": "docs/metrics/post-merge-bugs"
       }
     ]
   },
   {
     "metricId": "review-feedback",
+    "title": "Review Feedback Count",
+    "description": "The number and type of comments made during reviews, indicating the thoroughness of the review.",
+    "interpretations": [],
+    "tags": ["role:dev"],
     "articles": [
       {
-        "url": "docs/metrics/review-feedback",
-        "title": "The number and type of comments made during reviews, indicating the thoroughness of the review."
+        "url": "docs/metrics/review-feedback"
       }
     ]
-  },
-  {
-  "metricId": "change-failure-rate",
-  "articles": [
-    {
-      "url": "docs/metrics/change-failure-rate",
-      "title": "The rate at which code changes lead to errors or bugs after merging."
-    }
-  ]
-}
+  }
 ]

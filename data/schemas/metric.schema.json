@@ -9,6 +9,12 @@
     "metricId": {
       "$ref": "types.schema.json#/$defs/uniqueId"
     },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
     "related": {
       "type": "array",
       "minItems": 0,
@@ -23,7 +29,25 @@
       "items": {
         "$ref": "types.schema.json#/$defs/resourceUrl"
       }
+    },
+    "tags": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "description": "for better further search. For example, all metrics of DORA framework, or related to developers, etc"
+      }
+    },
+    "interpretations": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "description": "Different interpretations that might help to understand metric's meaning and appliance."
+      }
     }
   },
-  "required": ["metricId"]
+  "required": ["metricId", "title"]
 }

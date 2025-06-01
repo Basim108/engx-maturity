@@ -1,0 +1,70 @@
+[
+  {
+    "metricId": "lead-time-for-changes",
+    "title": "Lead Time for Changes",
+    "description": "This metric measures the time it takes for a code commit or change to be successfully deployed to production.",
+    "interpretations": [
+      "It reflects the efficiency of your software delivery process.",
+      "This measures how quickly teams can deliver changes to users.",
+      "High-performing teams typically achieve lead times measured in hours or days."
+    ],
+    "articles": [
+      {
+        "url": "https://dora.dev/guides/dora-metrics-four-keys/#throughput",
+        "title": "DORA’s software delivery metrics: the four keys."
+      }
+    ],
+    "tags": ["google-dora", "role:devops", "throughput"]
+  },
+  {
+    "metricId": "deployment-frequency",
+    "title": "Deployment frequency",
+    "description": "This metric measures how often application changes are deployed to production.",
+    "interpretations": [
+      "Higher deployment frequency indicates a more efficient and responsive delivery process.",
+      "High-performing teams typically deploy multiple times per day.",
+      "Lower-performing teams may deploy weekly, monthly, or even less frequently."
+    ],
+    "articles": [
+      {
+        "url": "https://dora.dev/guides/dora-metrics-four-keys/#throughput",
+        "title": "DORA’s software delivery metrics: the four keys."
+      }
+    ],
+    "tags": ["google-dora", "role:all", "throughput"]
+  },
+  {
+    "metricId": "change-failure-rate",
+    "title": "Change Failure Rate",
+    "description": "This metric measures the percentage of deployments that cause failures in production, requiring hotfixes or rollbacks.",
+    "interpretations": [
+      "A lower change failure rate indicates a more reliable delivery process.",
+      "High-performing teams typically achieve change failure rates below 15%."
+    ],
+    "articles": [
+      {
+        "url": "https://dora.dev/guides/dora-metrics-four-keys/#stability",
+        "title": "DORA’s software delivery metrics: the four keys."
+      }
+    ],
+    "tags": ["google-dora", "role:devops", "role:dev", "stability"]
+  },
+  {
+    "metricId": "mean-time-to-recovery",
+    "title": "Mean Time to Recovery (MTTR)",
+    "description": "This metric measures the time from when an incident is detected until it's resolved and a service is restored.",
+    "interpretations": [
+      "A lower recovery time indicates a more resilient and responsive system.",
+      "A lower recovery time indicates a more reliable delivery process.",
+      "High-performing teams typically achieve change failure rates below 15%.",
+      "High-performing teams typically achieve recovery times under an hour."
+    ],
+    "articles": [
+      {
+        "url": "https://dora.dev/guides/dora-metrics-four-keys/#stability",
+        "title": "DORA’s software delivery metrics: the four keys."
+      }
+    ],
+    "tags": ["google-dora", "role:devops", "role:dev", "stability"]
+  }
+]

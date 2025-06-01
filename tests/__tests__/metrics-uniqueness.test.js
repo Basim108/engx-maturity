@@ -2,26 +2,26 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
 
-const RULE_FILE_PATTERN = '**/*.rules.json';
-const RULES_FOLDER_PATH = path.resolve(__dirname, '../../data/rules/');
+const METRIC_FILE_PATTERN = '**/*.metrics.json';
+const METRICS_FOLDER_PATH = path.resolve(__dirname, '../../data/rules/');
 
 describe('Validate metrics uniqueness', () => {
 
-    test('should not have duplicated rule ids', () => {
+    test('should not have duplicated metric ids', () => {
         // Arrange
-        const ruleFiles = glob.sync(RULE_FILE_PATTERN, {cwd: RULES_FOLDER_PATH});
-        const rules = new Map();
+        const metricFiles = glob.sync(METRIC_FILE_PATTERN, {cwd: METRICS_FOLDER_PATH});
+        const metrics = new Map();
         const duplicatedKeys = new Set();
 
         // Act
-        ruleFiles.forEach(file => {
-            const fileFullName = path.resolve(RULES_FOLDER_PATH, file);
+        metricFiles.forEach(file => {
+            const fileFullName = path.resolve(METRICS_FOLDER_PATH, file);
             const arrayOfRules = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
 
             findDuplicatedRules({
-                keyAccessor: x => x.ruleId,
+                keyAccessor: x => x.metricId,
                 arrayOfRules,
-                ruleIds: rules,
+                ruleIds: metrics,
                 duplicatedKeys,
                 fileName: fileFullName
             });
@@ -31,50 +31,45 @@ describe('Validate metrics uniqueness', () => {
         let errorMsg = '';
         if (duplicatedKeys.size > 0) {
             const firstDuplicateId = duplicatedKeys.values().next().value;
-            const otherFiles = rules.get(firstDuplicateId).map(info => info.fileName).join('\n');
+            const otherFiles = metrics.get(firstDuplicateId).map(info => info.fileName).join('\n');
             errorMsg = `RuleId: ${firstDuplicateId} is duplicated in the following files:\n${otherFiles}`;
         }
         expect(duplicatedKeys.size, errorMsg).toBe(0);
     });
 
-    test('should not have duplicated rule titles', () => {
+    test('should not have references to metrics that does not presented in any file', () => {
         // Arrange
-        const ruleFiles = glob.sync(RULE_FILE_PATTERN, {cwd: RULES_FOLDER_PATH});
-        const rules = new Map();
-        const duplicatedKeys = new Set();
-
-        // Act
-        ruleFiles.forEach(file => {
-            const fileFullName = path.resolve(RULES_FOLDER_PATH, file);
-            const arrayOfRules = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
-
-            findDuplicatedRules({
-                keyAccessor: x => x.statement,
-                arrayOfRules,
-                ruleIds: rules,
-                duplicatedKeys,
-                fileName: fileFullName
-            });
+        const metricFiles = glob.sync(METRIC_FILE_PATTERN, {cwd: METRICS_FOLDER_PATH});
+        const allMetricIds = new Map();
+        const notExistedMetricIds = new Map();
+        metricFiles.forEach(file => {
+            const fileFullName = path.resolve(METRICS_FOLDER_PATH, file);
+            const fileMetrics = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
+            fileMetrics.forEach(x => allMetricIds.set(x.metricId, x));
+        })
+        allMetricIds.values().forEach(metric => {
+            if(metric.related === undefined || metric.related.length === 0)
+                return;
+            const notReferencedIds = metric.related.filter(relatedMetricId => allMetricIds.get(relatedMetricId) === undefined);
+            if(notReferencedIds.length > 0)
+                notExistedMetricIds.set(metric.metricId, notReferencedIds);
         })
 
         // Assert
         let errorMsg = '';
-        if (duplicatedKeys.size > 0) {
-            const firstDuplicateId = duplicatedKeys.values().next().value;
-            const otherFiles = rules.get(firstDuplicateId).map(info => info.fileName).join('\n');
-            errorMsg = `Rule title: "${firstDuplicateId}" is duplicated in the following files:\n${otherFiles}`;
+        if (notExistedMetricIds.size > 0) {
+            const hostMetricId = notExistedMetricIds.keys().next().value;
+            const relatedMetricIds = notExistedMetricIds.get(hostMetricId).join(', ');
+            errorMsg = `Metric "${hostMetricId}" has related ids that are not defined in any of metric files: ${relatedMetricIds}`;
         }
-        expect(duplicatedKeys.size, errorMsg).toBe(0);
+        expect(notExistedMetricIds.size, errorMsg).toBe(0);
     });
-
-    // TODO: check that there is no related metrics that where not presented in any of **/*.metrics.json files
-    // TODO: check that there is no metric that has duplicates in articles.url, articles.title, metricId
 
     function findDuplicatedRules(info) {
         const {keyAccessor, arrayOfRules, ruleIds, duplicatedKeys, fileName} = info;
         arrayOfRules.forEach(rule => {
             const key = keyAccessor(rule);
-            if(key === undefined)
+            if (key === undefined)
                 return;
             const existedInfo = ruleIds.get(key)
             if (existedInfo === undefined) {

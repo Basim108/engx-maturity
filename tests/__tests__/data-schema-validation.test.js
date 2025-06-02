@@ -18,9 +18,10 @@ describe('Validate rule files', () => {
     test('should match the rule schema', () => {
         const arrayOfRulesSchema = JSON.parse(fs.readFileSync(SCHEMA_ARRAY_OF_RULES_FILE_PATH, 'utf8'));
         const rulesSchema = JSON.parse(fs.readFileSync(SCHEMA_RULES_FILE_PATH, 'utf8'));
+        const metricsSchema = JSON.parse(fs.readFileSync(SCHEMA_METRICS_FILE_PATH, 'utf8'));
         const typesSchema = JSON.parse(fs.readFileSync(SCHEMA_TYPES_FILE_PATH, 'utf8'));
 
-        const ajv = new Ajv({allErrors: true, schemas: [rulesSchema, typesSchema]});
+        const ajv = new Ajv({allErrors: true, schemas: [rulesSchema, metricsSchema, typesSchema]});
         const validator = ajv.compile(arrayOfRulesSchema);
 
         const ruleFiles = glob.sync(RULE_FILE_PATTERN, {cwd: RULES_FOLDER_PATH});

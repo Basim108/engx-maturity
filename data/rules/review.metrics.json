@@ -54,7 +54,23 @@
         "url": "docs/metrics/requirement-review-efficiency"
       }
     ],
-    "related": ["post-merge-bugs", "post-release-changes"]
+    "related": [
+      {
+        "metricId": "post-merge-bugs",
+        "relation": "leads-to",
+        "description": "poor requirement-review-efficiency (unclear, incomplete, or rushed requirements) **leads to** implementing the wrong functionality or missing edge cases, resulting in more more bugs after it was merged."
+      },
+      {
+        "metricId": "post-release-changes",
+        "relation": "leads-to",
+        "description": "poor requirement-review-efficiency (unclear, incomplete, or rushed requirements) **leads to** increasing number of changes to the same feature after it was released."
+      },
+      {
+        "metricId": "review-bugs",
+        "relation": "leads-to",
+        "description": "high requirement-review-efficiency leads to find more bugs on review phase."
+      }
+    ]
   },
   {
     "metricId": "code-review-efficiency",
@@ -67,7 +83,16 @@
         "url": "docs/metrics/code-review-efficiency"
       }
     ],
-    "related": ["post-merge-bugs", "review-bugs"]
+    "related": [
+      {
+        "metricId": "post-merge-bugs",
+        "relation": "leads-to"
+      },
+      {
+        "metricId": "review-bugs",
+        "relation": "leads-to"
+      }
+    ]
   },
   {
     "metricId": "review-bugs",
@@ -78,6 +103,16 @@
     "articles": [
       {
         "url": "docs/metrics/review-bugs"
+      }
+    ],
+    "related": [
+      {
+        "metricId": "code-review-efficiency",
+        "relation": "affected-by"
+      },
+      {
+        "metricId": "requirement-review-efficiency",
+        "relation": "affected-by"
       }
     ]
   },
@@ -90,6 +125,16 @@
     "articles": [
       {
         "url": "docs/metrics/post-merge-bugs"
+      }
+    ],
+    "related": [
+      {
+        "metricId": "code-review-efficiency",
+        "relation": "affected-by"
+      },
+      {
+        "metricId": "requirement-review-efficiency",
+        "relation": "affected-by"
       }
     ]
   },

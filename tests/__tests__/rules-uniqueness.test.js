@@ -8,9 +8,14 @@ const RULES_FOLDER_PATH = path.resolve(__dirname, '../../data/rules/');
 
 describe('Validate rules uniqueness', () => {
 
+    let ruleFiles;
+
+    beforeAll(() => {
+        ruleFiles = glob.sync(RULE_FILE_PATTERN, {cwd: RULES_FOLDER_PATH});
+    })
+
     test('should not have duplicated rule ids', () => {
         // Arrange
-        const ruleFiles = glob.sync(RULE_FILE_PATTERN, {cwd: RULES_FOLDER_PATH});
         const rules = new Map();
         const duplicatedKeys = new Set();
 
@@ -40,7 +45,6 @@ describe('Validate rules uniqueness', () => {
 
     test('should not have duplicated rule questions', () => {
         // Arrange
-        const ruleFiles = glob.sync(RULE_FILE_PATTERN, {cwd: RULES_FOLDER_PATH});
         const rules = new Map();
         const duplicatedKeys = new Set();
 
@@ -65,7 +69,6 @@ describe('Validate rules uniqueness', () => {
 
     test('should not have duplicated rule statements', () => {
         // Arrange
-        const ruleFiles = glob.sync(RULE_FILE_PATTERN, {cwd: RULES_FOLDER_PATH});
         const rules = new Map();
         const duplicatedKeys = new Set();
 

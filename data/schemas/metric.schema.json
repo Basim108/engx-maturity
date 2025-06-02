@@ -1,53 +1,75 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "metric.schema.json",
-  "title": "Metric",
-  "description": "A measurement that allows to reveal current situation of EngX.",
-  "type": "object",
-  "additionalProperties": false,
-  "properties": {
-    "metricId": {
-      "$ref": "types.schema.json#/$defs/uniqueId"
-    },
-    "title": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    },
-    "related": {
-      "type": "array",
-      "minItems": 0,
-      "uniqueItems": true,
-      "items": {
-        "$ref": "types.schema.json#/$defs/uniqueId"
+  "$defs": {
+    "metricReference": {
+      "title": "Metric Reference",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "metricId": {
+          "$ref": "types.schema.json#/$defs/uniqueId"
+        },
+        "relation": {
+          "enum": ["adds-to", "works-together", "impacts", "leads-to", "affected-by", "clarify"],
+          "description": "Some relation types have similar or close meaning, for example, impacts and leads-to. It is ok because they could increase readability in some metrics."
+        },
+        "description": {
+          "type": "string"
+        }
       }
     },
-    "articles": {
-      "type": "array",
-      "minItems": 0,
-      "items": {
-        "$ref": "types.schema.json#/$defs/resourceUrl"
-      }
-    },
-    "tags": {
-      "type": "array",
-      "minItems": 0,
-      "uniqueItems": true,
-      "items": {
-        "type": "string",
-        "description": "for better further search. For example, all metrics of DORA framework, or related to developers, etc"
-      }
-    },
-    "interpretations": {
-      "type": "array",
-      "minItems": 0,
-      "uniqueItems": true,
-      "items": {
-        "type": "string",
-        "description": "Different interpretations that might help to understand metric's meaning and appliance."
-      }
+    "metric": {
+      "title": "Metric",
+      "description": "A measurement that allows to reveal current situation of EngX.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "metricId": {
+          "$ref": "types.schema.json#/$defs/uniqueId"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "related": {
+          "type": "array",
+          "minItems": 0,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/metricReference",
+            "description": "Metric has relation to a related metric. For example, code-review-efficiency leads-to post-merge-bugs, so code-review-efficiency has post-merge-bugs as a related metric with leads-to relation."
+          }
+        },
+        "articles": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "$ref": "types.schema.json#/$defs/resourceUrl"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "minItems": 0,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "description": "for better further search. For example, all metrics of DORA framework, or related to developers, etc"
+          }
+        },
+        "interpretations": {
+          "type": "array",
+          "minItems": 0,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "description": "Different interpretations that might help to understand metric's meaning and applicability."
+          }
+        }
+      },
+      "required": ["metricId", "title"]
     }
-  },
-  "required": ["metricId", "title"]
+  }
 }

@@ -1,0 +1,135 @@
+[
+  {
+    "metricId": "review-time",
+    "title": "Review Time",
+    "description": "How long does it take to conduct a one cycle of reviewing an artifact (code PR, task requirement, test-plan, etc).",
+    "interpretations": [],
+    "articles": [
+      {
+        "url": "docs/metrics/review-time"
+      }
+    ]
+  },
+  {
+    "metricId": "review-cycles",
+    "title": "Review Cycles",
+    "description": "The number of review cycles it takes to approve a request.",
+    "interpretations": [],
+    "articles": [
+      {
+        "url": "docs/metrics/review-cycles"
+      }
+    ]
+  },
+  {
+    "metricId": "review-lead-time",
+    "title": "Review Lead Time",
+    "description": "The total period of time a task has been on a review, starting from task has been send on review, including waiting for the first reviewer to start a review, all review cycles, till getting an approval from the very last reviewer.",
+    "interpretations": [],
+    "articles": [
+      {
+        "url": "docs/metrics/lead-time"
+      }
+    ]
+  },
+  {
+    "metricId": "review-feedback-quality",
+    "title": "Review Feedback Quality",
+    "description": "The clarity, relevance, and usefulness of comments provided during review.",
+    "interpretations": [],
+    "articles": [
+      {
+        "url": "docs/metrics/review-feedback-quality"
+      }
+    ]
+  },
+  {
+    "metricId": "review-efficiency",
+    "title": "Review Efficiency",
+    "description": "How quickly and thoroughly reviewers complete a review.",
+    "interpretations": [
+      "How quickly and thoroughly reviewers complete reviewing a code review.",
+      "How quickly and thoroughly reviewers complete reviewing a architecture design review.",
+      "How quickly and thoroughly reviewers complete reviewing a task requirement review.",
+      "How thorough developers understand a task requirement before they start working on it.",
+      "How thorough quality engineers understand a task requirement before they start working on it."
+    ],
+    "tags": ["role:dev", "role:arch", "role:qa", "shift-left-testing"],
+    "articles": [
+      {
+        "url": "docs/metrics/code-review-efficiency"
+      },
+      {
+        "url": "docs/metrics/requirement-review-efficiency"
+      },
+      {
+        "url": "docs/metrics/architecture-review-efficiency"
+      }
+    ],
+    "related": [
+      {
+        "metricId": "post-merge-bugs",
+        "relation": "leads-to",
+        "description": "poor requirement-review-efficiency (unclear, incomplete, or rushed requirements) **leads to** implementing the wrong functionality or missing edge cases, resulting in more bugs after it was merged."
+      },
+      {
+        "metricId": "post-release-changes",
+        "relation": "leads-to",
+        "description": "poor requirement-review-efficiency (unclear, incomplete, or rushed requirements) **leads to** increasing number of changes to the same feature after it was released."
+      },
+      {
+        "metricId": "review-bugs",
+        "relation": "leads-to",
+        "description": "high requirement-review-efficiency leads to find more bugs on review phase (shifting left testing)."
+      }
+    ]
+  },
+  {
+    "metricId": "review-bugs",
+    "title": "Review Bug Discovery Count",
+    "description": "The number of bugs or defects discovered during the review process.",
+    "interpretations": [],
+    "tags": ["role:dev", "shift-left-testing"],
+    "articles": [
+      {
+        "url": "docs/metrics/review-bugs"
+      }
+    ],
+    "related": [
+      {
+        "metricId": "review-efficiency",
+        "relation": "affected-by"
+      }
+    ]
+  },
+  {
+    "metricId": "post-merge-bugs",
+    "title": "Post Merge Bug Discovery Count",
+    "description": "The number of bugs found after merging, indicating the effectiveness of the review in catching defects.",
+    "interpretations": [],
+    "tags": ["role:dev", "role:qa"],
+    "articles": [
+      {
+        "url": "docs/metrics/post-merge-bugs"
+      }
+    ],
+    "related": [
+      {
+        "metricId": "review-efficiency",
+        "relation": "affected-by"
+      }
+    ]
+  },
+  {
+    "metricId": "review-feedback",
+    "title": "Review Feedback Count",
+    "description": "The number and type of comments made during reviews, indicating the thoroughness of the review.",
+    "interpretations": [],
+    "tags": ["role:dev"],
+    "articles": [
+      {
+        "url": "docs/metrics/review-feedback"
+      }
+    ]
+  }
+]

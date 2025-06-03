@@ -40,7 +40,7 @@
           "uniqueItems": true,
           "items": {
             "$ref": "#/$defs/metricReference",
-            "description": "Metric has relation to a related metric. For example, code-review-efficiency leads-to post-merge-bugs, so code-review-efficiency has post-merge-bugs as a related metric with leads-to relation."
+            "description": "Metric has relation to a related metric. For example, review-efficiency leads-to post-merge-bugs, so review-efficiency has post-merge-bugs as a related metric with leads-to relation."
           }
         },
         "articles": {

@@ -61,7 +61,7 @@ describe('Validate metrics consistency', () => {
                   .forEach(mainReference => {
                       const metric = metricInfo.metric;
                       const relatedMetric = allMetricIds.get(mainReference.metricId);
-                      expect(relatedMetric).not.toBeUndefined();
+                      expect(relatedMetric, `Cannot find a metric "${mainReference.metricId}" among all metrics.`).not.toBeUndefined();
                       let errorMsg = `Metric ${relatedMetric.metric.metricId} in file "${relatedMetric.fileName}" has no related metrics, but expected to have ${metric.metricId} with one of these relations: ${expectedReversedRelations.join(', ')}`;
                       expect(relatedMetric.metric.related, errorMsg).not.toBeUndefined();
                       expect(relatedMetric.metric.related.length).toBeGreaterThan(0);

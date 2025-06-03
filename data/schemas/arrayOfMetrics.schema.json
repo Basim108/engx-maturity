@@ -4,6 +4,6 @@
   "additionalProperties": false,
   "minItems": 0,
   "items": {
-    "$ref": "metric.schema.json#"
+    "$ref": "metric.schema.json#/$defs/metric"
   }
 }

@@ -44,6 +44,14 @@ function findDuplicatedRules({keyAccessor, arrayOfRules, ruleIds, duplicatedKeys
     })
 }
 
+/**
+ * can be used to traverse all files in a folder and collect all instances of a particular type, for example, metrics, or rules, etc.
+ * @param filePattern - glob pattern to match files
+ * @param folderPath  - path to folder
+ * @param keyAccessor - function to extract value to use it as a key in a map.
+ * @param objectName  - name of the object to collect.
+ * @returns {Map<any, any>}
+ */
 function collectObjects(filePattern, folderPath, keyAccessor, objectName) {
     const objectFiles = glob.sync(filePattern, {cwd: folderPath});
     const objects = new Map();

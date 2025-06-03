@@ -1,22 +1,2 @@
 [
-  {
-    "metricId": "post-release-changes",
-    "title": "Post Release Changes",
-    "description": "The number of changes made to the feature's requirement after it was released.",
-    "interpretations": [
-      "A low number indicates the extent to which task requirements are carefully planned and clearly formulated for later implementation and testing."
-    ],
-    "tags": ["role:ba"],
-    "articles": [
-      {
-        "url": "docs/metrics/post-release-changes"
-      }
-    ],
-    "related": [
-      {
-        "metricId": "requirement-review-efficiency",
-        "relation": "affected-by"
-      }
-    ]
-  }
 ]

@@ -42,7 +42,8 @@
       "minItems": 0,
       "uniqueItems": true,
       "items": {
-        "$ref": "types.schema.json#/$defs/uniqueId"
+        "$ref": "types.schema.json#/$defs/uniqueId",
+        "description": "metrics related to this rule"
       }
     }
   },

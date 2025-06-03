@@ -22,19 +22,36 @@
   {
     "ruleId": "c5186970-a48c-482b-a818-d2c9ed66cd79",
     "question": "Do you have a design review process",
-    "tags": ["role:arch"]
+    "tags": ["role:arch"],
+    "metrics": [
+      "review-feedback",
+      "post-merge-bugs",
+      "review-bugs",
+      "review-efficiency",
+      "review-cycles",
+      "review-time",
+      "review-lead-time"
+    ]
   },
   {
     "ruleId": "00ac5fb6-2bb2-4358-adf7-3e3cc99ad004",
     "question": "Does your design review involve senior developers?",
     "description": "to identify potential issues and ensure alignment with best practices.",
-    "tags": ["role:arch"]
+    "tags": ["role:arch", "role:dev"],
+    "metrics": [
+      "post-merge-bugs",
+      "review-efficiency"
+    ]
   },
   {
     "ruleId": "6822bd19-febc-44b2-8305-3d8bf5a8e6d9",
     "question": "Does your design review involve relevant stakeholders?",
     "description": "to identify potential issues and ensure alignment with requirements.",
-    "tags": ["role:arch"]
+    "tags": ["role:arch", "role:stakeholder"],
+    "metrics": [
+      "post-release-changes",
+      "review-efficiency"
+    ]
   },
   {
     "ruleId": "3e974b22-aaba-423a-a911-e3b5316d2e68",

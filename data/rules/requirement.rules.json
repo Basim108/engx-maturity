@@ -4,7 +4,13 @@
     "statement": "Introduce requirements reviews.",
     "question": "Do you have rigorous requirements reviews and sign-offs?",
     "tags": ["role:ba", "sdlc:requirements"],
-    "metrics": ["review-time", "lead-time", "requirement-review-efficiency"]
+    "metrics": [
+      "review-time",
+      "review-lead-time",
+      "review-efficiency",
+      "review-feedback",
+      "post-release-changes"
+    ]
   },
   {
     "ruleId": "7ee7b527-7f7d-4710-ac96-6c304e445740",
@@ -25,11 +31,17 @@
   {
     "ruleId": "83c278c2-81c6-4610-9977-20edf55c366d",
     "question": "Do you control changes to requirements?",
-    "tags": ["role:ba", "role:pm"]
+    "tags": ["role:ba", "role:pm"],
+    "metrics": [
+      "post-release-changes"
+    ]
   },
   {
     "ruleId": "38b896f4-4f3c-4458-947a-d7851959574b",
     "question": "Do you have a formal process for managing changes to requirements?",
-    "tags": ["role:ba", "role:pm"]
+    "tags": ["role:ba", "role:pm"],
+    "metrics": [
+      "post-release-changes"
+    ]
   }
 ]

@@ -85,9 +85,11 @@ describe('Validate metrics consistency', () => {
         return wrongRelations;
     }
 
-    function buildWrongReverseRelationErrorMessage(wrongRelations, errorMsg) {
+    function buildWrongReverseRelationErrorMessage(wrongRelations, expectedReversedRelations) {
+        let errorMsg = '';
         if (wrongRelations.length > 0) {
-            errorMsg = wrongRelations.map(pair => `${pair.relatedMetric.metricId} in file ${pair.relatedMetric.fileName} must have "affected-by" relation. Main metric ${pair.mainMetric.metricId}, from file ${pair.mainMetric.fileName}`)
+            const mustHaveRelations = expectedReversedRelations.join(', ');
+            errorMsg = wrongRelations.map(pair => `${pair.relatedMetric.metricId} in file ${pair.relatedMetric.fileName} must have one of these ${mustHaveRelations} relations. Main metric ${pair.mainMetric.metricId}, from file ${pair.mainMetric.fileName}`)
                                      .join('\n');
         }
         return errorMsg;

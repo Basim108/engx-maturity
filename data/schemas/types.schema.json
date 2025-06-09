@@ -24,7 +24,7 @@
           "description": "Brief resource description, for example, an article header."
         }
       },
-      "required": ["url", "title"]
+      "required": ["url"]
     }
   }
 }

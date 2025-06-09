@@ -1,33 +1,47 @@
 [
   {
     "ruleId": "e18b074f-7c74-430d-a686-ef0c1b6aa8a3",
-    "title": "Do you have rigorous requirements reviews and sign-offs?",
-    "tags": ["role:ba"]
+    "statement": "Introduce requirements reviews.",
+    "question": "Do you have rigorous requirements reviews and sign-offs?",
+    "tags": ["role:ba", "sdlc:requirements"],
+    "metrics": [
+      "review-time",
+      "review-lead-time",
+      "review-efficiency",
+      "review-feedback",
+      "post-release-changes"
+    ]
   },
   {
     "ruleId": "7ee7b527-7f7d-4710-ac96-6c304e445740",
-    "title": "Do you have a clear traceability matrix?",
-    "tags": ["role:ba", "role:arch", "role:qa", "role:dev", "role:devops", "role:pm", "role:po"]
+    "question": "Do you have a clear traceability matrix?",
+    "tags": ["role:all", "sdlc:all"]
   },
   {
     "ruleId": "cd9369e6-135e-481e-9652-e8f5b1ab954b",
-    "title": "Do you maintain your traceability matrix?",
-    "tags": ["role:ba", "role:arch", "role:qa", "role:dev", "role:devops", "role:pm", "role:po"]
+    "question": "Do you maintain your traceability matrix?",
+    "tags": ["role:all", "sdlc:all"]
   },
   {
     "ruleId": "a1070923-ebf0-43c0-8658-c06a3a4dc268",
-    "title": "Does your traceability matrix link requirements to design elements, code modules, test cases, and ultimately, the delivered product?",
+    "question": "Does your traceability matrix link requirements to design elements, code modules, test cases, and ultimately, the delivered product?",
     "description": "This helps ensure that everything built can be traced back to a specific requirement and that all requirements are addressed.",
-    "tags": ["role:ba", "role:arch", "role:qa", "role:dev", "role:devops", "role:pm", "role:po"]
+    "tags": ["role:all", "sdlc:all"]
   },
   {
     "ruleId": "83c278c2-81c6-4610-9977-20edf55c366d",
-    "title": "Do you control changes to requirements?",
-    "tags": ["role:ba", "role:pm"]
+    "question": "Do you control changes to requirements?",
+    "tags": ["role:ba", "role:pm"],
+    "metrics": [
+      "post-release-changes"
+    ]
   },
   {
     "ruleId": "38b896f4-4f3c-4458-947a-d7851959574b",
-    "title": "Do you have a formal process for managing changes to requirements?",
-    "tags": ["role:ba", "role:pm"]
+    "question": "Do you have a formal process for managing changes to requirements?",
+    "tags": ["role:ba", "role:pm"],
+    "metrics": [
+      "post-release-changes"
+    ]
   }
 ]

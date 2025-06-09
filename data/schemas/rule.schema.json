@@ -9,9 +9,13 @@
     "ruleId": {
       "$ref": "types.schema.json#/$defs/uuid"
     },
-    "title": {
+    "statement": {
       "type": "string",
-      "description": "Brief summary of a rule"
+      "description": "Brief summary of a rule in imperative form for guidelines"
+    },
+    "question": {
+      "type": "string",
+      "description": "Brief summary of a rule in interrogative form for questionnaires/assessments"
     },
     "description": {
       "type": "string",
@@ -19,20 +23,29 @@
     },
     "tags": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "description": "for better further search. For example, 'security', 'metrics', etc"
+        "description": "for better further search. For example, all rules about security, or related to developers, etc"
       }
     },
     "articles": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "$ref": "types.schema.json#/$defs/resourceUrl"
       }
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "types.schema.json#/$defs/uniqueId",
+        "description": "metrics related to this rule"
+      }
     }
   },
-  "required": ["ruleId", "title"]
+  "required": ["ruleId", "question"]
 }

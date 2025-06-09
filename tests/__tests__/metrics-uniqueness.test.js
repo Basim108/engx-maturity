@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
-const {findDuplicatedMetrics} = require('./utils/testUtils.js');
+const {findDuplicatedEntities, buildDuplicateErrorMessage} = require('./utils/testUtils.js');
 
 const METRIC_FILE_PATTERN = '**/*.metrics.json';
 const METRICS_FOLDER_PATH = path.resolve(__dirname, '../../data/rules/');
@@ -19,22 +19,21 @@ describe('Validate metrics uniqueness', () => {
             const fileFullName = path.resolve(METRICS_FOLDER_PATH, file);
             const arrayOfMetrics = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
 
-            findDuplicatedMetrics({
+            findDuplicatedEntities({
                 keyAccessor: x => x.metricId,
-                arrayOfMetrics,
-                metrics,
+                arrayOfEntities: arrayOfMetrics,
+                allEntities: metrics,
                 duplicatedKeys,
-                fileName: fileFullName
+                fileName: fileFullName,
             });
         })
 
         // Assert
-        let errorMsg = '';
-        if (duplicatedKeys.size > 0) {
-            const firstDuplicateId = duplicatedKeys.values().next().value;
-            const otherFiles = metrics.get(firstDuplicateId).map(info => info.fileName).join('\n');
-            errorMsg = `RuleId: ${firstDuplicateId} is duplicated in the following files:\n${otherFiles}`;
-        }
+        const errorMsg = buildDuplicateErrorMessage({
+            entityName: 'Metric',
+            duplicatedKeys,
+            allEntities: metrics
+        });
         expect(duplicatedKeys.size, errorMsg).toBe(0);
     });
 })

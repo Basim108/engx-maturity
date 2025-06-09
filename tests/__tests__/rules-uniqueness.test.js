@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
-const {findDuplicatedRules} = require('./utils/testUtils.js');
+const {findDuplicatedEntities, buildDuplicateErrorMessage} = require('./utils/testUtils.js');
 
 const RULE_FILE_PATTERN = '**/*.rules.json';
 const RULES_FOLDER_PATH = path.resolve(__dirname, '../../data/rules/');
@@ -24,22 +24,17 @@ describe('Validate rules uniqueness', () => {
             const fileFullName = path.resolve(RULES_FOLDER_PATH, file);
             const arrayOfRules = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
 
-            findDuplicatedRules({
+            findDuplicatedEntities({
                 keyAccessor: x => x.ruleId,
-                arrayOfRules,
-                ruleIds: rules,
+                arrayOfEntities: arrayOfRules,
+                allEntities: rules,
                 duplicatedKeys,
                 fileName: fileFullName
             });
         })
 
         // Assert
-        let errorMsg = '';
-        if (duplicatedKeys.size > 0) {
-            const firstDuplicateId = duplicatedKeys.values().next().value;
-            const otherFiles = rules.get(firstDuplicateId).map(info => info.fileName).join('\n');
-            errorMsg = `RuleId: ${firstDuplicateId} is duplicated in the following files:\n${otherFiles}`;
-        }
+        const errorMsg = buildDuplicateErrorMessage({entityName: 'Rule', duplicatedKeys, allEntities: rules});
         expect(duplicatedKeys.size, errorMsg).toBe(0);
     });
 
@@ -53,17 +48,22 @@ describe('Validate rules uniqueness', () => {
             const fileFullName = path.resolve(RULES_FOLDER_PATH, file);
             const arrayOfRules = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
 
-            findDuplicatedRules({
+            findDuplicatedEntities({
                 keyAccessor: x => x.question,
-                arrayOfRules,
-                ruleIds: rules,
+                arrayOfEntities: arrayOfRules,
+                allEntities: rules,
                 duplicatedKeys,
                 fileName: fileFullName
             });
         })
 
         // Assert
-        const errorMsg = buildErrorMessage(duplicatedKeys, rules);
+        const errorMsg = buildDuplicateErrorMessage({
+            entityName: 'Rule',
+            uniquePropertyName: 'id',
+            duplicatedKeys,
+            allEntities: rules
+        });
         expect(duplicatedKeys.size, errorMsg).toBe(0);
     });
 
@@ -77,26 +77,52 @@ describe('Validate rules uniqueness', () => {
             const fileFullName = path.resolve(RULES_FOLDER_PATH, file);
             const arrayOfRules = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
 
-            findDuplicatedRules({
+            findDuplicatedEntities({
                 keyAccessor: x => x.statement,
-                arrayOfRules,
-                ruleIds: rules,
+                arrayOfEntities: arrayOfRules,
+                allEntities: rules,
                 duplicatedKeys,
                 fileName: fileFullName
             });
         })
 
         // Assert
-        const errorMsg = buildErrorMessage(duplicatedKeys, rules);
+        const errorMsg = buildDuplicateErrorMessage({
+            entityName: 'Rule',
+            uniquePropertyName: 'statement',
+            duplicatedKeys,
+            allEntities: rules
+        });
         expect(duplicatedKeys.size, errorMsg).toBe(0);
     });
 
-    function buildErrorMessage(duplicatedKeys, rules) {
-        if (duplicatedKeys.size > 0) {
-            const firstDuplicateId = duplicatedKeys.values().next().value;
-            const otherFiles = rules.get(firstDuplicateId).map(info => info.fileName).join('\n');
-            return `Rule title: "${firstDuplicateId}" is duplicated in the following files:\n${otherFiles}`;
-        }
-        return '';
-    }
+
+    test('should not have duplicated rule questions', () => {
+        // Arrange
+        const rules = new Map();
+        const duplicatedKeys = new Set();
+
+        // Act
+        ruleFiles.forEach(file => {
+            const fileFullName = path.resolve(RULES_FOLDER_PATH, file);
+            const arrayOfRules = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
+
+            findDuplicatedEntities({
+                keyAccessor: x => x.question,
+                arrayOfEntities: arrayOfRules,
+                allEntities: rules,
+                duplicatedKeys,
+                fileName: fileFullName
+            });
+        })
+
+        // Assert
+        const errorMsg = buildDuplicateErrorMessage({
+            entityName: 'Rule',
+            uniquePropertyName: 'question',
+            duplicatedKeys,
+            allEntities: rules
+        });
+        expect(duplicatedKeys.size, errorMsg).toBe(0);
+    });
 })

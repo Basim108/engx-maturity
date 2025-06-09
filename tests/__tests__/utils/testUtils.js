@@ -2,46 +2,36 @@ const glob = require('glob');
 const path = require("path");
 const fs = require("fs-extra");
 
-function findDuplicatedMetrics({keyAccessor, arrayOfMetrics, metrics, duplicatedKeys, fileName}) {
-    arrayOfMetrics.forEach(metric => {
-        const key = keyAccessor(metric);
+function findDuplicatedEntities({keyAccessor, arrayOfEntities, allEntities, duplicatedKeys, fileName}) {
+    arrayOfEntities.forEach(entity => {
+        const key = keyAccessor(entity);
         if (key === undefined)
             return;
-        const existedInfo = metrics.get(key)
+        const existedInfo = allEntities.get(key)
         if (existedInfo === undefined) {
-            metrics.set(key, [{
+            allEntities.set(key, [{
                 fileName,
-                rule: metric
+                entity
             }])
         } else {
             duplicatedKeys.add(key);
             existedInfo.push({
                 fileName,
-                rule: metric
+                entity
             })
         }
     })
+
 }
 
-function findDuplicatedRules({keyAccessor, arrayOfRules, ruleIds, duplicatedKeys, fileName}) {
-    arrayOfRules.forEach(rule => {
-        const key = keyAccessor(rule);
-        if (key === undefined)
-            return;
-        const existedInfo = ruleIds.get(key)
-        if (existedInfo === undefined) {
-            ruleIds.set(key, [{
-                fileName,
-                rule
-            }])
-        } else {
-            duplicatedKeys.add(key);
-            existedInfo.push({
-                fileName,
-                rule
-            })
-        }
-    })
+function buildDuplicateErrorMessage({entityName, uniquePropertyName, duplicatedKeys, allEntities}){
+    let errorMsg = '';
+    if (duplicatedKeys.size > 0) {
+        const firstDuplicateId = duplicatedKeys.values().next().value;
+        const otherFiles = allEntities.get(firstDuplicateId).map(info => info.fileName).join('\n');
+        errorMsg = `${entityName} ${uniquePropertyName}: ${firstDuplicateId} is duplicated in the following files:\n${otherFiles}`;
+    }
+    return errorMsg;
 }
 
 /**
@@ -70,7 +60,7 @@ function collectObjects(filePattern, folderPath, keyAccessor, objectName) {
 }
 
 module.exports = {
-    findDuplicatedMetrics,
-    findDuplicatedRules,
+    findDuplicatedEntities,
+    buildDuplicateErrorMessage,
     collectObjects
 }

@@ -34,7 +34,8 @@ describe('Validate metrics consistency', () => {
 
     test('given leads-to or impacts reference should have affected-by relation in the reversed metric', () => {
         // Arrange
-        const wrongRelations = findWrongReverseRelations(["leads-to", "impacts"], ["affected-by"]);
+        const expectedRelations = ["affected-by"];
+        const wrongRelations = findWrongReverseRelations(["leads-to", "impacts"], expectedRelations);
 
         // Assert
         const errorMsg = buildWrongReverseRelationErrorMessage(wrongRelations);
@@ -43,10 +44,11 @@ describe('Validate metrics consistency', () => {
 
     test('given affected-by reference should have leads-to or impacts relation in the reversed metric', () => {
         // Arrange
-        const wrongRelations = findWrongReverseRelations(["affected-by"], ["leads-to", "impacts"]);
+        const expectedRelations = ["leads-to", "impacts"];
+        const wrongRelations = findWrongReverseRelations(["affected-by"], expectedRelations);
 
         // Assert
-        const errorMsg = buildWrongReverseRelationErrorMessage(wrongRelations);
+        const errorMsg = buildWrongReverseRelationErrorMessage(wrongRelations, expectedRelations);
         expect(wrongRelations.length, errorMsg).toBe(0);
     });
 

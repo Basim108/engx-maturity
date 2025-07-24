@@ -1,7 +1,7 @@
 [
   {
     "ruleId": "74fac1b1-c8cf-42be-957f-89f33ac91f0a",
-    "question": "Do you have a code review process?",
+    "question": "Do you have a well-established review process?",
     "tags": ["role:dev"],
     "metrics": [
       "review-feedback",

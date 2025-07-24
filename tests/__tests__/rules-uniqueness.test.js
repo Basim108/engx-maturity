@@ -34,7 +34,12 @@ describe('Validate rules uniqueness', () => {
         })
 
         // Assert
-        const errorMsg = buildDuplicateErrorMessage({entityName: 'Rule', duplicatedKeys, allEntities: rules});
+        const errorMsg = buildDuplicateErrorMessage({
+            entityName: 'Rule',
+            uniquePropertyName: 'id',
+            duplicatedKeys,
+            allEntities: rules
+        });
         expect(duplicatedKeys.size, errorMsg).toBe(0);
     });
 
@@ -60,7 +65,7 @@ describe('Validate rules uniqueness', () => {
         // Assert
         const errorMsg = buildDuplicateErrorMessage({
             entityName: 'Rule',
-            uniquePropertyName: 'id',
+            uniquePropertyName: 'question',
             duplicatedKeys,
             allEntities: rules
         });

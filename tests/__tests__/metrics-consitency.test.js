@@ -38,7 +38,7 @@ describe('Validate metrics consistency', () => {
         const wrongRelations = findWrongReverseRelations(["leads-to", "impacts"], expectedRelations);
 
         // Assert
-        const errorMsg = buildWrongReverseRelationErrorMessage(wrongRelations);
+        const errorMsg = buildWrongReverseRelationErrorMessage(wrongRelations, expectedRelations);
         expect(wrongRelations.length, errorMsg).toBe(0);
     });
 

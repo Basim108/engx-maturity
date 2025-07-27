@@ -2,7 +2,9 @@
   {
     "ruleId": "74fac1b1-c8cf-42be-957f-89f33ac91f0a",
     "question": "Do you have a well-established review process?",
-    "tags": ["role:dev"],
+    "tags": [
+      "role:dev"
+    ],
     "metrics": [
       "review-feedback",
       "post-merge-bugs",
@@ -11,11 +13,15 @@
       "review-cycles",
       "review-time",
       "review-lead-time"
-    ]
+    ],
+    "statement": "Have a well-established review process."
   },
   {
     "ruleId": "9f515709-5649-49c4-bd40-7c9268069fe6",
     "question": "Is code review a compulsory part of the development life cycle?",
-    "tags": ["role:dev"]
+    "tags": [
+      "role:dev"
+    ],
+    "statement": "Make code review a compulsory part of the development life cycle."
   }
 ]

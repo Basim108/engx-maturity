@@ -47,5 +47,5 @@
       }
     }
   },
-  "required": ["ruleId", "question"]
+  "required": ["ruleId", "statement", "question"]
 }

@@ -1,37 +1,37 @@
 [
   {
     "ruleId": "03f31a64-3c7a-4543-8085-e69373f991d7",
-    "title": "Do you have Definition of Ready criteria`s to take user story in sprint?",
+    "question": "Do you have Definition of Ready criteria`s to take user story in sprint?",
     "tags": ["role:ba"]
   },
   {
     "ruleId": "313c4446-7f4f-4d93-b2c3-7454b173c17a",
-    "title": "Do you have Definition of Done for user stories and sprint?",
+    "question": "Do you have Definition of Done for user stories and sprint?",
     "tags": ["role:pm", "role:po"]
   },
   {
     "ruleId": "ff0ba187-b653-4bbd-b09d-dfe41286e714",
-    "title": "Does team track sprint burn-down chart?",
+    "question": "Does team track sprint burn-down chart?",
     "tags": ["role:pm", "role:ba", "role:dev", "role:devops", "role:qa"]
   },
   {
     "ruleId": "a0cb34ea-eabb-46df-aabd-5349c0bc8705",
-    "title": "Does team deliver software to the customer at the end of every sprint?",
+    "question": "Does team deliver software to the customer at the end of every sprint?",
     "tags": ["role:pm", "role:ba", "role:dev", "role:devops", "role:qa"]
   },
   {
     "ruleId": "76e00546-61c1-425b-b503-a54e4e0d8b22",
-    "title": "Is your sprint/iteration duration less or equal to 2 weeks?",
+    "question": "Is your sprint/iteration duration less or equal to 2 weeks?",
     "tags": ["role:pm", "sdlc"]
   },
   {
     "ruleId": "d3384f33-afac-4ee1-ab3b-d3d9052b0c7e",
-    "title": "Do you have backlog grooming/refinement before sprint starts?",
+    "question": "Do you have backlog grooming/refinement before sprint starts?",
     "tags": ["role:pm"]
   },
   {
     "ruleId": "a6e5f7ad-fc58-4668-90b8-91d862191977",
-    "title": "Are stories accepted by customer/product owner within the sprint?",
+    "question": "Are stories accepted by customer/product owner within the sprint?",
     "tags": ["role:pm", "role:po"]
   }
 ]

@@ -1,0 +1,25 @@
+[
+  {
+    "metricId": "post-release-changes",
+    "title": "Post Release Changes",
+    "description": "The number of changes made to an artifact after it was released.",
+    "interpretations": [
+      "The number of changes made to the feature's requirement after it was released.",
+      "The number of changes made to the architecture design module after it was released.",
+      "A low number indicates the extent to which a solution are carefully designed and clearly formulated for later implementation and testing.",
+      "A low number indicates the extent to which task requirements are carefully planned and clearly formulated for later implementation and testing."
+    ],
+    "tags": ["role:ba", "role:arch"],
+    "articles": [
+      {
+        "url": "docs/metrics/post-release-changes"
+      }
+    ],
+    "related": [
+      {
+        "metricId": "review-efficiency",
+        "relation": "affected-by"
+      }
+    ]
+  }
+]

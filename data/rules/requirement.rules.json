@@ -1,7 +1,7 @@
 [
   {
     "ruleId": "e18b074f-7c74-430d-a686-ef0c1b6aa8a3",
-    "statement": "Introduce requirements reviews.",
+    "statement": "Introduce rigorous requirements reviews and sign-offs.",
     "question": "Do you have rigorous requirements reviews and sign-offs?",
     "tags": [
       "role:ba",
@@ -31,7 +31,7 @@
       "role:all",
       "sdlc:all"
     ],
-    "statement": "Maintain your traceability matrix."
+    "statement": "Ensure maintenance of your traceability matrix."
   },
   {
     "ruleId": "a1070923-ebf0-43c0-8658-c06a3a4dc268",
@@ -41,7 +41,7 @@
       "role:all",
       "sdlc:all"
     ],
-    "statement": "Traceability matrix should link requirements to design elements, code modules, test cases, and ultimately, the delivered product."
+    "statement": "Ensure your traceability matrix links requirements to design elements, code modules, test cases, and ultimately, the delivered product."
   },
   {
     "ruleId": "83c278c2-81c6-4610-9977-20edf55c366d",
@@ -53,7 +53,7 @@
     "metrics": [
       "post-release-changes"
     ],
-    "statement": "Introduce requirement change manegement to control its changes."
+    "statement": "Introduce requirement change management to control its changes."
   },
   {
     "ruleId": "38b896f4-4f3c-4458-947a-d7851959574b",

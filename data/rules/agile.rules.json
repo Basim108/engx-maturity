@@ -5,7 +5,7 @@
     "tags": [
       "role:ba"
     ],
-    "statement": "Have Definition of Ready criteria to take user story in sprint."
+    "statement": "Introduce 'Definition of Ready' criteria to take user story in sprint."
   },
   {
     "ruleId": "313c4446-7f4f-4d93-b2c3-7454b173c17a",
@@ -14,7 +14,7 @@
       "role:pm",
       "role:po"
     ],
-    "statement": "Have Definition of Done for user stories and sprint."
+    "statement": "Introduce 'Definition of Done' for user stories and sprint."
   },
   {
     "ruleId": "ff0ba187-b653-4bbd-b09d-dfe41286e714",
@@ -38,7 +38,7 @@
       "role:devops",
       "role:qa"
     ],
-    "statement": "Deliver software to the customer at the end of every sprint."
+    "statement": "Ensure software delivery to the customer at the end of every sprint."
   },
   {
     "ruleId": "76e00546-61c1-425b-b503-a54e4e0d8b22",
@@ -47,23 +47,23 @@
       "role:pm",
       "sdlc"
     ],
-    "statement": "Sprint/iteration duration should be less than or equal to 2 weeks."
+    "statement": "Ensure sprint/iteration duration is less than or equal to 2 weeks."
   },
   {
     "ruleId": "d3384f33-afac-4ee1-ab3b-d3d9052b0c7e",
-    "question": "Do you have backlog grooming/refinement sessions before sprint starts?",
+    "question": "Do you have backlog grooming/refinement sessions before the start of each sprint/iteration?",
     "tags": [
       "role:pm"
     ],
-    "statement": "Have backlog grooming/refinement sessions before sprint starts."
+    "statement": "Introduce backlog grooming/refinement sessions before the start of each sprint/iteration."
   },
   {
     "ruleId": "a6e5f7ad-fc58-4668-90b8-91d862191977",
-    "question": "Are user stories accepted by a customer or product owner within the sprint?",
+    "question": "Are user stories accepted by a customer or product owner before sprint starting a sprint/iteration?",
     "tags": [
       "role:pm",
       "role:po"
     ],
-    "statement": "User stories should be accepted by a customer or product owner within the sprint."
+    "statement": "Ensure user stories are accepted by a customer or product owner before starting a sprint/iteration."
   }
 ]

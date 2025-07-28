@@ -14,7 +14,7 @@
       "review-time",
       "review-lead-time"
     ],
-    "statement": "Have a well-established review process."
+    "statement": "Introduce a well-established review process."
   },
   {
     "ruleId": "9f515709-5649-49c4-bd40-7c9268069fe6",
@@ -22,6 +22,6 @@
     "tags": [
       "role:dev"
     ],
-    "statement": "Make code review a compulsory part of the development life cycle."
+    "statement": "Ensure code review is a compulsory part of the development life cycle."
   }
 ]

@@ -59,7 +59,7 @@
   },
   {
     "ruleId": "a6e5f7ad-fc58-4668-90b8-91d862191977",
-    "question": "Are user stories accepted by a customer or product owner before sprint starting a sprint/iteration?",
+    "question": "Are user stories accepted by a customer or product owner before starting a sprint/iteration?",
     "tags": [
       "role:pm",
       "role:po"

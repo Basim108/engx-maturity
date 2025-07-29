@@ -2,27 +2,41 @@
   {
     "ruleId": "4c2fac70-1776-4602-95e0-2ff248668a8f",
     "question": "Do you have design standards and guidelines?",
-    "tags": ["role:arch"]
+    "tags": [
+      "role:arch"
+    ],
+    "statement": "Introduce design standards and guidelines."
   },
   {
     "ruleId": "3d6b1f5a-a7eb-4f0a-b491-cc2e3e7535a1",
     "question": "Do you enforce use of design standards and guidelines?",
-    "tags": ["role:arch"]
+    "tags": [
+      "role:arch"
+    ],
+    "statement": "Enforce use of design standards and guidelines."
   },
   {
     "ruleId": "427674aa-0a56-445c-91aa-d7530423a7b2",
     "question": "Do you have a comprehensive system design?",
-    "tags": ["role:arch"]
+    "tags": [
+      "role:arch"
+    ],
+    "statement": "Ensure system design covers all the most crucial parts of the system."
   },
   {
     "ruleId": "36f612eb-a4ea-4e31-916c-4841de70d18e",
     "question": "Does your system architecture consider non-functional requirements like scalability, performance, security, and maintainability?",
-    "tags": ["role:arch"]
+    "tags": [
+      "role:arch"
+    ],
+    "statement": "Ensure system architecture considers non-functional requirements like scalability, performance, security, and maintainability."
   },
   {
     "ruleId": "c5186970-a48c-482b-a818-d2c9ed66cd79",
     "question": "Do you have a design review process",
-    "tags": ["role:arch"],
+    "tags": [
+      "role:arch"
+    ],
     "metrics": [
       "review-feedback",
       "post-merge-bugs",
@@ -31,37 +45,52 @@
       "review-cycles",
       "review-time",
       "review-lead-time"
-    ]
+    ],
+    "statement": "Introduce a design review process."
   },
   {
     "ruleId": "00ac5fb6-2bb2-4358-adf7-3e3cc99ad004",
     "question": "Does your design review involve senior developers?",
     "description": "to identify potential issues and ensure alignment with best practices.",
-    "tags": ["role:arch", "role:dev"],
+    "tags": [
+      "role:arch",
+      "role:dev"
+    ],
     "metrics": [
       "post-merge-bugs",
       "review-efficiency"
-    ]
+    ],
+    "statement": "Ensure senior developers are involved into design review."
   },
   {
     "ruleId": "6822bd19-febc-44b2-8305-3d8bf5a8e6d9",
     "question": "Does your design review involve relevant stakeholders?",
     "description": "to identify potential issues and ensure alignment with requirements.",
-    "tags": ["role:arch", "role:stakeholder"],
+    "tags": [
+      "role:arch",
+      "role:stakeholder"
+    ],
     "metrics": [
       "post-release-changes",
       "review-efficiency"
-    ]
+    ],
+    "statement": "Ensure relevant stakeholders are involved into design review."
   },
   {
     "ruleId": "3e974b22-aaba-423a-a911-e3b5316d2e68",
     "question": "Do you use Architecture as Code approach?",
-    "tags": ["role:arch"]
+    "tags": [
+      "role:arch"
+    ],
+    "statement": "Introduce Architecture as Code approach."
   },
   {
     "ruleId": "fc71fbb3-130b-4565-919f-72779fe0be09",
     "question": "Do you maintain the current system design?",
     "description": "Review and analyse current design and amend it to keep it up to date.",
-    "tags": ["role:arch"]
+    "tags": [
+      "role:arch"
+    ],
+    "statement": "Ensure maintenance of the current system design."
   }
 ]

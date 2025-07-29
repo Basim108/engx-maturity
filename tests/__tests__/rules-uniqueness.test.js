@@ -101,6 +101,35 @@ describe('Validate rules uniqueness', () => {
         expect(duplicatedKeys.size, errorMsg).toBe(0);
     });
 
+    test('should not have duplicated rule statements', () => {
+        // Arrange
+        const rules = new Map();
+        const duplicatedKeys = new Set();
+
+        // Act
+        ruleFiles.forEach(file => {
+            const fileFullName = path.resolve(RULES_FOLDER_PATH, file);
+            const arrayOfRules = JSON.parse(fs.readFileSync(fileFullName, 'utf8'));
+
+            findDuplicatedEntities({
+                keyAccessor: x => x.statement,
+                arrayOfEntities: arrayOfRules,
+                allEntities: rules,
+                duplicatedKeys,
+                fileName: fileFullName
+            });
+        })
+
+        // Assert
+        const errorMsg = buildDuplicateErrorMessage({
+            entityName: 'Rule',
+            uniquePropertyName: 'statement',
+            duplicatedKeys,
+            allEntities: rules
+        });
+        expect(duplicatedKeys.size, errorMsg).toBe(0);
+    });
+
 
     test('should not have duplicated rule questions', () => {
         // Arrange
